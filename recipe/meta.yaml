@@ -17,7 +17,7 @@ source:
   sha256: 88d3e2c662e601214ef5caa26ca2db0492eab6ec3bf9dc9a746bb1a7b8c3aab2  # [win64]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win32 or cuda_compiler_version in ("None", "9.2", "10.0")]
   script:
     - mkdir -p $PREFIX/include                                            # [unix]
@@ -25,6 +25,7 @@ build:
     - mkdir -p $PREFIX/lib                                                # [unix]
     - mv lib/{{ cuda_compiler_version }}/libcutensor.so* $PREFIX/lib/     # [unix]
 
+    - dir %SRC_DIR%  # [win64]
     - mkdir %LIBRARY_INC%                                                                                       # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                                                             # [win64]
