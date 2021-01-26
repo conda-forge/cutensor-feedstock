@@ -55,6 +55,10 @@ requirements:
     - __glibc >=2.17      # [linux]
 
 test:
+  requires:
+    - git
+    - {{ compiler('c') }}
+    - {{ compiler('cuda') }}
   commands:
     - test -f $PREFIX/include/cutensor.h                    # [linux]
     - test -f $PREFIX/include/cutensor/types.h              # [linux]
