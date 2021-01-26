@@ -25,16 +25,10 @@ build:
     - mkdir -p $PREFIX/lib                                                # [unix]
     - mv lib/{{ cuda_compiler_version }}/libcutensor.so* $PREFIX/lib/     # [unix]
 
-    - dir %SRC_DIR%  # [win64]
-    - dir %LIBRARY_INC%  # [win64]
-    - 7z x %SRC_DIR%\\libcutensor_1.2.2.exe  # [win64]
-    - mkdir %LIBRARY_INC%                                                                                       # [win64]
+    - 7z x %SRC_DIR%\\libcutensor_1.2.2.exe                                                                     # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
-    - mkdir %LIBRARY_INC%\\cutensor                                                                             # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
-    - mkdir %LIBRARY_BIN%                                                                                       # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.dll %LIBRARY_BIN%\\  # [win64]
-    - mkdir %LIBRARY_LIB%                                                                                       # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.lib %LIBRARY_LIB%\\  # [win64]
   ignore_run_exports_from:
     - {{ compiler('c') }}    # [linux]
