@@ -58,6 +58,7 @@ test:
   requires:
     - git
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
   commands:
     - test -f $PREFIX/include/cutensor.h                    # [linux]
