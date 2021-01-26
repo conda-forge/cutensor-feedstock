@@ -17,7 +17,7 @@ source:
   sha256: 88d3e2c662e601214ef5caa26ca2db0492eab6ec3bf9dc9a746bb1a7b8c3aab2  # [win64]
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win32 or cuda_compiler_version in ("None", "9.2", "10.0")]
   script:
     - mkdir -p $PREFIX/include                                            # [unix]
@@ -93,3 +93,4 @@ about:
 extra:
   recipe-maintainers:
     - leofang
+    - jakirkham
