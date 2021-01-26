@@ -27,6 +27,7 @@ build:
 
     - dir %SRC_DIR%  # [win64]
     - dir %LIBRARY_INC%  # [win64]
+    - 7z x %SRC_DIR%\\libcutensor_1.2.2.exe  # [win64]
     - mkdir %LIBRARY_INC%                                                                                       # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                                                             # [win64]
@@ -48,6 +49,7 @@ requirements:
     - {{ compiler('cuda') }}
     - sysroot_linux-64 2.17  # [linux64]
     - libgomp  # [linux]
+    - 7zip  # [win]
   run:
     # Only GCC_3.0 or older symbols present
     - libgcc-ng >=3.0     # [linux]
