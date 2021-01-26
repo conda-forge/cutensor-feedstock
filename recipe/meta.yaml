@@ -31,6 +31,8 @@ build:
     - mkdir %LIBRARY_INC%\\cutensor                                                                             # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.dll %LIBRARY_BIN%\\  # [win64 and cuda_compiler_version in ("10.1", "10.2")]
+    - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.lib %LIBRARY_LIB%\\  # [win64 and cuda_compiler_version in ("10.1", "10.2")]
+    - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\11\\cutensor.dll %LIBRARY_BIN%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
   ignore_run_exports_from:
     - {{ compiler('c') }}    # [linux]
