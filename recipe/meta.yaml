@@ -27,6 +27,7 @@ build:
 
     - 7z x %SRC_DIR%\\libcutensor_1.2.2.exe                                                                     # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
+    - mkdir %LIBRARY_INC%\\cutensor                                                                             # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.dll %LIBRARY_BIN%\\  # [win64]
     - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.lib %LIBRARY_LIB%\\  # [win64]
