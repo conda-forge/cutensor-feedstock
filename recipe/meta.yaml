@@ -63,6 +63,7 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
+    - sysroot_linux-64 2.17  # [linux64]
   commands:
     - test -f $PREFIX/include/cutensor.h                    # [linux]
     - test -f $PREFIX/include/cutensor/types.h              # [linux]
