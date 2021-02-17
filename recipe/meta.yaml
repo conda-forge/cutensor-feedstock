@@ -1,23 +1,22 @@
-{% set version = "1.2.2" %}
-{% set patch_version = "5" %}
+{% set version = "1.2.2.5" %}
 
 package:
   name: cutensor
-  version: {{ version }}.{{ patch_version }}
+  version: {{ version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-x86_64-{{ version }}.{{ patch_version }}.tar.gz   # [linux64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-ppc64le-{{ version }}.{{ patch_version }}.tar.gz  # [ppc64le and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-sbsa-{{ version }}.{{ patch_version }}.tar.gz  # [aarch64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor_{{ version }}.exe  # [win64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-x86_64-{{ version }}.tar.gz   # [linux64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-ppc64le-{{ version }}.tar.gz  # [ppc64le and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-sbsa-{{ version }}.tar.gz  # [aarch64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-windows-x86_64-{{ version }}.zip  # [win64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
 
   sha256: 954ee22b80d6b82fd4decd42b7faead86af7c3817653b458620a66174e5b89b6  # [linux64]
   sha256: d914a721b8a6bbfbf4f2bdea3bb51775e5df39abc383d415b3b06bbde2a47e6e  # [ppc64le]
   sha256: 031b75946d2ce22f8c2736f7b4216b9377406afcb35012093a66e2801bfe2990  # [aarch64]
-  sha256: 88d3e2c662e601214ef5caa26ca2db0492eab6ec3bf9dc9a746bb1a7b8c3aab2  # [win64]
+  sha256: 8f960b22594a91dbad7e78cc91acb92a2a87607b2f46085fe6ecd6173747467a  # [win64]
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win32 or cuda_compiler_version in ("None", "9.2", "10.0")]
   script:
     - mkdir -p $PREFIX/include                                            # [unix]
@@ -26,14 +25,13 @@ build:
     - mv lib/{{ cuda_compiler_version }}/libcutensor.so* $PREFIX/lib/     # [unix and cuda_compiler_version in ("10.1", "10.2")]
     - mv lib/11/libcutensor.so* $PREFIX/lib/                              # [unix and cuda_compiler_version in ("11.0", )]
 
-    - 7z x %SRC_DIR%\\libcutensor_1.2.2.exe                                                                     # [win64]
-    - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
-    - mkdir %LIBRARY_INC%\\cutensor                                                                             # [win64]
-    - copy %SRC_DIR%\\libcutensor\\libcutensor\\include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
-    - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.dll %LIBRARY_BIN%\\  # [win64 and cuda_compiler_version in ("10.1", "10.2")]
-    - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\{{ cuda_compiler_version }}\\cutensor.lib %LIBRARY_LIB%\\  # [win64 and cuda_compiler_version in ("10.1", "10.2")]
-    - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\11\\cutensor.dll %LIBRARY_BIN%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
-    - copy %SRC_DIR%\\libcutensor\\libcutensor\\lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
+    - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
+    - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
+    - copy include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
+    - copy lib\\{{ cuda_compiler_version }}\\cutensor.dll %LIBRARY_BIN%\\  # [win64 and cuda_compiler_version in ("10.1", "10.2")]
+    - copy lib\\{{ cuda_compiler_version }}\\cutensor.lib %LIBRARY_LIB%\\  # [win64 and cuda_compiler_version in ("10.1", "10.2")]
+    - copy lib\\11\\cutensor.dll %LIBRARY_BIN%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
+    - copy lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
   ignore_run_exports_from:
     - {{ compiler('c') }}    # [linux]
   run_exports:
@@ -47,7 +45,6 @@ requirements:
     - {{ compiler('cuda') }}
     - sysroot_linux-64 2.17  # [linux64]
     - libgomp  # [linux]
-    - 7zip  # [win]
   run:
     # Only GCC_3.0 or older symbols present
     - libgcc-ng >=3.0     # [linux]
