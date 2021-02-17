@@ -1,14 +1,15 @@
-{% set version = "1.2.2.5" %}
+{% set version = "1.2.2" %}
+{% set patch_version = "5" %}
 
 package:
   name: cutensor
-  version: {{ version }}
+  version: {{ version }}.{{ patch_version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-x86_64-{{ version }}.tar.gz   # [linux64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-ppc64le-{{ version }}.tar.gz  # [ppc64le and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-sbsa-{{ version }}.tar.gz  # [aarch64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-windows-x86_64-{{ version }}.zip  # [win64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-x86_64-{{ version }}.{{ patch_version }}.tar.gz   # [linux64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-ppc64le-{{ version }}.{{ patch_version }}.tar.gz  # [ppc64le and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-sbsa-{{ version }}.{{ patch_version }}.tar.gz  # [aarch64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-windows-x86_64-{{ version }}.{{ patch_version }}.zip  # [win64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
 
   sha256: 954ee22b80d6b82fd4decd42b7faead86af7c3817653b458620a66174e5b89b6  # [linux64]
   sha256: d914a721b8a6bbfbf4f2bdea3bb51775e5df39abc383d415b3b06bbde2a47e6e  # [ppc64le]
