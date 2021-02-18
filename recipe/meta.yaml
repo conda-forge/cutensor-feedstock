@@ -18,7 +18,7 @@ source:
 
 build:
   number: 3
-  skip: True  # [win32 or cuda_compiler_version in ("None", "9.2", "10.0")]
+  skip: True  # [win32 or cuda_compiler_version in ("None", "9.2", "10.0", "11.1", "11.2")]
   script:
     - mkdir -p $PREFIX/include                                            # [unix]
     - cp -r include/* $PREFIX/include/                                    # [unix]
@@ -35,6 +35,7 @@ build:
     - copy lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
   ignore_run_exports_from:
     - {{ compiler('c') }}     # [linux]
+    - {{ compiler('cuda') }}  # [cuda_compiler_version == "11.0"]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
     - {{ pin_compatible('cudatoolkit') }}  # [cuda_compiler_version == "11.0"]
