@@ -66,7 +66,7 @@ test:
     - sysroot_linux-64 2.17  # [linux64]
     # At this point we are still inside the 11.0 docker, so needs to avoid pulling
     # down a newer runtime, otherwise the linker would complain
-    - cudatoolkit 11.0  # [linux and cuda_compiler_version == "11.0"]
+    #- cudatoolkit 11.0  # [linux and cuda_compiler_version == "11.0"]
   commands:
     - test -f $PREFIX/include/cutensor.h                    # [linux]
     - test -f $PREFIX/include/cutensor/types.h              # [linux]
