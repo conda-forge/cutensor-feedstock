@@ -35,8 +35,6 @@ build:
     - copy lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
   ignore_run_exports_from:
     - {{ compiler('c') }}    # [linux]
-  run_exports:
-    - {{ pin_compatible('cudatoolkit') }}      # [cuda_compiler_version == "11.0"]
   missing_dso_whitelist:
     - '*/libgomp.*'  # [linux]
 
@@ -45,7 +43,6 @@ requirements:
     - {{ compiler('c') }}
     - sysroot_linux-64 2.17  # [linux64]
     - libgomp  # [linux]
-  host:
     - cudatoolkit {{ cuda_compiler_version }}
   run:
     # Only GCC_3.0 or older symbols present
