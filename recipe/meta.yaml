@@ -61,7 +61,7 @@ test:
     - git
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}
+    #- {{ compiler('cuda') }}
     - sysroot_linux-64 2.17  # [linux64]
   commands:
     - test -f $PREFIX/include/cutensor.h                    # [linux]
