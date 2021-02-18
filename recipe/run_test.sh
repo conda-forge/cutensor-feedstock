@@ -3,7 +3,7 @@ set -ex
 
 
 if [ $cuda_compiler_version == '11.0' ]; then
-    conda create -n test cudatoolkit=11.2 cutensor
+    conda install cudatoolkit=11.2
 fi
 
 
