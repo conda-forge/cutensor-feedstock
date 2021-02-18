@@ -35,6 +35,8 @@ build:
     - copy lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
   ignore_run_exports_from:
     - {{ compiler('c') }}    # [linux]
+  ignore_run_exports:
+    - cudatookit  # [cuda_compiler_version == "11.0"]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
   missing_dso_whitelist:
