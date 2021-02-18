@@ -35,27 +35,26 @@ build:
     - copy lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
   ignore_run_exports_from:
     - {{ compiler('c') }}    # [linux]
-  ignore_run_exports:
-    - cudatookit  # [cuda_compiler_version == "11.0"]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
-    - {{ pin_compatible('cudatoolkit') }}  # [cuda_compiler_version == "11.0"]
   missing_dso_whitelist:
     - '*/libgomp.*'  # [linux]
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ compiler('cuda') }}
     - sysroot_linux-64 2.17  # [linux64]
     - libgomp  # [linux]
+  host:
+    - cudatoolkit {{ cuda_compiler_version }}
   run:
     # Only GCC_3.0 or older symbols present
     - libgcc-ng >=3.0     # [linux]
     # Only GLIBCXX_3.4 or older symbols present
     - libstdcxx-ng >=3.4  # [linux]
     # The package built on CUDA 11.0 should work on any 11.x
-    - {{ pin_compatible('cudatoolkit') }}  # [cuda_compiler_version == "11.0"]
+    - {{ pin_compatible('cudatoolkit') }}      # [cuda_compiler_version == "11.0"]
+    - cudatoolkit {{ cuda_compiler_version }}  # [cuda_compiler_version != "11.0"]
   run_constrained:
     # Only GLIBC_2.17 or older symbols present
     - __glibc >=2.17      # [linux]
