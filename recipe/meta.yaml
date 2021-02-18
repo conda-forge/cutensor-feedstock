@@ -34,7 +34,7 @@ build:
     - copy lib\\11\\cutensor.dll %LIBRARY_BIN%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
     - copy lib\\11\\cutensor.lib %LIBRARY_LIB%\\                           # [win64 and cuda_compiler_version in ("11.0", )]
   ignore_run_exports_from:
-    - {{ compiler('c') }}     # [linux]
+    - {{ compiler('c') }}    # [linux]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
   missing_dso_whitelist:
@@ -64,9 +64,6 @@ test:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
     - sysroot_linux-64 2.17  # [linux64]
-    # At this point we are still inside the 11.0 docker, so needs to avoid pulling
-    # down a newer runtime, otherwise the linker would complain
-    #- cudatoolkit 11.0  # [linux and cuda_compiler_version == "11.0"]
   commands:
     - test -f $PREFIX/include/cutensor.h                    # [linux]
     - test -f $PREFIX/include/cutensor/types.h              # [linux]
