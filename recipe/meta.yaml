@@ -39,6 +39,7 @@ build:
     - cudatookit  # [cuda_compiler_version == "11.0"]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
+    - {{ pin_compatible('cudatoolkit') }}  # [cuda_compiler_version == "11.0"]
   missing_dso_whitelist:
     - '*/libgomp.*'  # [linux]
 
