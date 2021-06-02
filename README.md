@@ -3,7 +3,7 @@ About cutensor
 
 Home: https://developer.nvidia.com/cutensor
 
-Package license: [cuTENSOR Software License Agreement](https://docs.nvidia.com/cuda/cutensor/license.html)
+Package license: [LicenseRef-cuTENSOR-Software-License-Agreement](https://docs.nvidia.com/cuda/cutensor/license.html)
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cutensor-feedstock/blob/master/LICENSE.txt)
 

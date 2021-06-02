@@ -81,7 +81,7 @@ test:
 
 about:
   home: https://developer.nvidia.com/cutensor
-  license: cuTENSOR Software License Agreement
+  license: LicenseRef-cuTENSOR-Software-License-Agreement
   license_url: https://docs.nvidia.com/cuda/cutensor/license.html
   license_file: license.pdf
   summary: "Tensor Linear Algebra on NVIDIA GPUs"
