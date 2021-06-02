@@ -17,14 +17,14 @@ source:
   sha256: 8f960b22594a91dbad7e78cc91acb92a2a87607b2f46085fe6ecd6173747467a  # [win64]
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win32 or cuda_compiler_version in ("None", "9.2", "10.0", "11.1", "11.2")]
   script:
-    - mkdir -p $PREFIX/include                                            # [unix]
-    - cp -r include/* $PREFIX/include/                                    # [unix]
-    - mkdir -p $PREFIX/lib                                                # [unix]
-    - mv lib/{{ cuda_compiler_version }}/libcutensor.so* $PREFIX/lib/     # [unix and cuda_compiler_version in ("10.1", "10.2")]
-    - mv lib/11/libcutensor.so* $PREFIX/lib/                              # [unix and cuda_compiler_version in ("11.0", )]
+    - mkdir -p $PREFIX/include                                            # [linux]
+    - cp -r include/* $PREFIX/include/                                    # [linux]
+    - mkdir -p $PREFIX/lib                                                # [linux]
+    - mv lib/{{ cuda_compiler_version }}/libcutensor.so* $PREFIX/lib/     # [linux and cuda_compiler_version in ("10.1", "10.2")]
+    - mv lib/11/libcutensor.so* $PREFIX/lib/                              # [linux and cuda_compiler_version in ("11.0", )]
 
     - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
@@ -45,7 +45,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cuda') }}
-    - sysroot_linux-64 2.17  # [linux64]
+    - sysroot_linux-64 2.17  # [linux]
     - libgomp  # [linux]
   host:
   run:
@@ -65,7 +65,7 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-    - sysroot_linux-64 2.17  # [linux64]
+    - sysroot_linux-64 2.17  # [linux]
     # make sure we pick up the version matching the docker,
     # or the linker would complain 
     - cudatoolkit 11.0       # [cuda_compiler_version == "11.0"]
