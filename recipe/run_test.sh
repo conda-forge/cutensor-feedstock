@@ -3,7 +3,7 @@ set -ex
 
 NVCC_FLAGS=""
 # Workaround __ieee128 error; see https://github.com/LLNL/blt/issues/341
-if [[ $target_platform == linux-ppc64le && $PKG_VERSION == 10.* ]]; then
+if [[ $target_platform == linux-ppc64le && $cuda_compiler_version == 10.* ]]; then
     NVCC_FLAGS+=" -Xcompiler -mno-float128"
 fi
 
