@@ -9,7 +9,7 @@ fi
 
 git clone https://github.com/NVIDIA/CUDALibrarySamples.git sample_linux/
 cd sample_linux/cuTENSOR/
-error_log=$(nvcc $NVCC_FLAGS -I$PREFIX/include -L$PREFIX/lib -lcutensor contraction.cu -o contraction 2>&1)
+error_log=$(nvcc $NVCC_FLAGS --std=c++11 -I$PREFIX/include -L$PREFIX/lib -lcutensor -lcudart contraction.cu -o contraction 2>&1)
 echo $error_log
-error_log=$(nvcc $NVCC_FLAGS -I$PREFIX/include -L$PREFIX/lib -lcutensor reduction.cu -o reduction 2>&1)
+error_log=$(nvcc $NVCC_FLAGS --std=c++11 -I$PREFIX/include -L$PREFIX/lib -lcutensor -lcudart reduction.cu -o reduction 2>&1)
 echo $error_log
