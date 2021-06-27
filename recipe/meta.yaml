@@ -6,10 +6,10 @@ package:
   version: {{ version }}.{{ patch_version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-x86_64-{{ version }}.{{ patch_version }}.tar.gz   # [linux64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-ppc64le-{{ version }}.{{ patch_version }}.tar.gz  # [ppc64le and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  # url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-sbsa-{{ version }}.{{ patch_version }}.tar.gz  # [aarch64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
-  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-windows-x86_64-{{ version }}.{{ patch_version }}.zip  # [win64 and cuda_compiler_version in ("10.1", "10.2", "11.0")]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-x86_64-{{ version }}.{{ patch_version }}.tar.gz   # [linux64]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-ppc64le-{{ version }}.{{ patch_version }}.tar.gz  # [ppc64le]
+  # url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-linux-sbsa-{{ version }}.{{ patch_version }}.tar.gz     # [aarch64]
+  url: https://developer.download.nvidia.com/compute/cutensor/{{ version }}/local_installers/libcutensor-windows-x86_64-{{ version }}.{{ patch_version }}.zip    # [win64]
 
   sha256: 98d9559da6c1d880b71e7618d266f4e912ea4330f137d78f195781cb7864042f  # [linux64]
   sha256: 1621f950b91929abf05ab581b16a71285370523540d7be3fdf6fc1259e44f6ac  # [ppc64le]
