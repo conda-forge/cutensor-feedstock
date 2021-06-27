@@ -58,7 +58,7 @@ requirements:
     # Only GLIBCXX_3.4 or older symbols present
     - libstdcxx-ng >=3.4  # [linux]
     - cudatoolkit {{ cuda_compiler_version }}  # [cuda_compiler_version in ("10.2", "11.0")]
-    - cudatoolkit >=11.1                       # [cuda_compiler_version == "11.1"]
+    - cudatoolkit >=11.1,<12                   # [cuda_compiler_version == "11.1"]
   run_constrained:
     # Only GLIBC_2.17 or older symbols present
     - __glibc >=2.17      # [linux]
