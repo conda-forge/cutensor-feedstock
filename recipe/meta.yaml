@@ -17,7 +17,7 @@ source:
   sha256: 8f960b22594a91dbad7e78cc91acb92a2a87607b2f46085fe6ecd6173747467a  # [win64]
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win32 or cuda_compiler_version in ("None", "9.2", "10.0", "11.1", "11.2")]
   script_env:
     # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
@@ -40,7 +40,7 @@ build:
     - {{ compiler('c') }}    # [linux]
     - {{ compiler('cuda') }}
   run_exports:
-    - {{ pin_subpackage('cutensor') }}
+    - {{ pin_subpackage('cutensor', max_pin='x.x') }}  # fix for cuTENSOR < 1.3
   missing_dso_whitelist:
     - '*/libgomp.*'  # [linux]
 
