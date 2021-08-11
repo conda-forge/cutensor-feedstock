@@ -4,8 +4,8 @@ set -ex
 test -f $PREFIX/include/cutensor.h
 test -f $PREFIX/include/cutensor/types.h
 test -f $PREFIX/lib/libcutensor.so
-${GCC} test_load_elf.c -std=c99 -Werror -ldl -lcudart -o test_load_elf
-./test_load_elf $PREFIX/lib/libcutensor.so
+${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf
+LD_DEBUG=libs ./test_load_elf $PREFIX/lib/libcutensor.so
 
 NVCC_FLAGS=""
 # Workaround __ieee128 error; see https://github.com/LLNL/blt/issues/341
