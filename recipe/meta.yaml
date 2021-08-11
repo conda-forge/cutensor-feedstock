@@ -76,17 +76,6 @@ test:
     - cudatoolkit {{ cuda_compiler_version }}
   files:
     - test_load_elf.c        # [linux]
-  commands:
-    - test -f $PREFIX/include/cutensor.h                    # [linux]
-    - test -f $PREFIX/include/cutensor/types.h              # [linux]
-    - test -f $PREFIX/lib/libcutensor.so                    # [linux]
-    - ${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf  # [linux]
-    - ./test_load_elf $PREFIX/lib/libcutensor.so            # [linux]
-
-    - if not exist %LIBRARY_INC%\\cutensor.h exit 1         # [win64]
-    - if not exist %LIBRARY_INC%\\cutensor\\types.h exit 1  # [win64]
-    - if not exist %LIBRARY_BIN%\\cutensor.dll exit 1       # [win64]
-    - if not exist %LIBRARY_LIB%\\cutensor.lib exit 1       # [win64]
 
 about:
   home: https://developer.nvidia.com/cutensor
