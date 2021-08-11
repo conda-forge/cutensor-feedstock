@@ -17,12 +17,13 @@ source:
   sha256: faec7c8c5783fa7e06d5ec41c9372dee3f9a14d155038539a6bf52a6ce31f25e  # [win64]
 
 build:
-  number: 0
+  number: 1
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
   skip: True  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
   script_env:
     # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
     - CUDA_HOME  # [ppc64le]
+  rpaths_patcher: patchelf  # [linux]
   script:
     - mkdir -p $PREFIX/include                                            # [linux]
     - cp -r include/* $PREFIX/include/                                    # [linux]
@@ -73,10 +74,14 @@ test:
     # make sure we pick up the version matching the docker,
     # or the linker would complain 
     - cudatoolkit {{ cuda_compiler_version }}
+  files:
+    - test_load_elf.c        # [linux]
   commands:
     - test -f $PREFIX/include/cutensor.h                    # [linux]
     - test -f $PREFIX/include/cutensor/types.h              # [linux]
     - test -f $PREFIX/lib/libcutensor.so                    # [linux]
+    - ${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf  # [linux]
+    - ./test_load_elf $PREFIX/lib/libcutensor.so            # [linux]
 
     - if not exist %LIBRARY_INC%\\cutensor.h exit 1         # [win64]
     - if not exist %LIBRARY_INC%\\cutensor\\types.h exit 1  # [win64]
