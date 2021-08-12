@@ -51,6 +51,7 @@ requirements:
     - {{ compiler('cuda') }}
     - sysroot_linux-64 2.17  # [linux]
     - libgomp  # [linux]
+    - patchelf >=0.12  # [linux]
   host:
   run:
     # Only GCC_3.0 or older symbols present
