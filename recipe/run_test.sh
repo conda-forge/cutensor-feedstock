@@ -7,6 +7,7 @@ test -f $PREFIX/lib/libcutensor.so
 TEST_LINKER_FLAGS=""
 if [[ $target_platform == linux-ppc64le ]]; then
     TEST_LINKER_FLAGS+=" -L/usr/local/cuda/lib64 -lcudart"
+fi
 ${GCC} test_load_elf.c -std=c99 -Werror -ldl $TEST_LINKER_FLAGS -o test_load_elf
 ./test_load_elf $PREFIX/lib/libcutensor.so
 
