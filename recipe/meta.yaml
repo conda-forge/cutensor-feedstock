@@ -80,7 +80,7 @@ about:
   home: https://developer.nvidia.com/cutensor
   license: LicenseRef-cuTENSOR-Software-License-Agreement
   license_url: https://docs.nvidia.com/cuda/cutensor/license.html
-  license_file: license.txt
+  license_file: LICENSE
   summary: "Tensor Linear Algebra on NVIDIA GPUs"
   description: |
     The cuTENSOR Library is a first-of-its-kind GPU-accelerated tensor linear
