@@ -8,10 +8,12 @@ package:
 source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}.{{ patch_version }}-archive.tar.xz     # [linux64]
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}.{{ patch_version }}-archive.tar.xz   # [ppc64le]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}.{{ patch_version }}-archive.tar.xz         # [aarch64]
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}.{{ patch_version }}-archive.zip    # [win64]
 
   sha256: 2e9517f31305872a7e496b6aa8ea329acda6b947b0c1eb1250790eaa2d4e2ecc  # [linux64]
   sha256: 79f294c4a7933e5acee5f150145c526d6cd4df16eefb63f2d65df1dbc683cd68  # [ppc64le]
+  sha256: 0b62d5305abfdfca4776290f16a1796c78c1fa83b203680c012f37d44706fcdb  # [aarch64]
   sha256: 3abeacbe7085af7026ca1399a77c681c219c10a1448a062964e97aaac2b05851  # [win64]
 
 build:
@@ -20,7 +22,7 @@ build:
   skip: True  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
   script_env:
     # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
-    - CUDA_HOME  # [ppc64le]
+    - CUDA_HOME  # [ppc64le or aarch64]
   script:
     - mkdir -p $PREFIX/include                                            # [linux]
     - cp -r include/* $PREFIX/include/                                    # [linux]
