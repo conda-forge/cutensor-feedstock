@@ -25,7 +25,7 @@ build:
     - CUDA_HOME  # [ppc64le or aarch64]
   script:
     - mkdir -p $PREFIX/include                                             # [linux]
-    - cp -r include/* $PREFIX/include/                                     # [linux]
+    - mv include/* $PREFIX/include/                                        # [linux]
     - mkdir -p $PREFIX/lib                                                 # [linux]
     - mv lib/{{ cuda_compiler_version }}/*.so* $PREFIX/lib/                # [linux and cuda_compiler_version in ("10.2", "11.0")]
     - mv lib/11/*.so* $PREFIX/lib/                                         # [linux and cuda_compiler_version == "11.1"]
@@ -35,8 +35,10 @@ build:
     - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
     - copy include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
+    - del lib\\{{ cuda_compiler_version }}\\*static*                       # [win64 and cuda_compiler_version in ("10.2", "11.0")]
     - copy lib\\{{ cuda_compiler_version }}\\*.dll %LIBRARY_BIN%\\         # [win64 and cuda_compiler_version in ("10.2", "11.0")]
     - copy lib\\{{ cuda_compiler_version }}\\*.lib %LIBRARY_LIB%\\         # [win64 and cuda_compiler_version in ("10.2", "11.0")]
+    - del lib\\11\\*static*                                                # [win64 and cuda_compiler_version in ("11.1", )]
     - copy lib\\11\\*.dll %LIBRARY_BIN%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
     - copy lib\\11\\*.lib %LIBRARY_LIB%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
   ignore_run_exports_from:
