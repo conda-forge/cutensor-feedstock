@@ -36,13 +36,6 @@ Current build status
         <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/cutensor-feedstock/master.svg?label=macOS">
       </a>
     </td>
-  </tr><tr>
-    <td>Drone</td>
-    <td>
-      <a href="https://cloud.drone.io/conda-forge/cutensor-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/cutensor-feedstock/master.svg?label=Linux">
-      </a>
-    </td>
   </tr>
     
   <tr>
@@ -57,24 +50,24 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_cuda_compiler_version10.2</td>
+              <td>linux_64_c_compiler_version7cuda_compiler_version10.2cxx_compiler_version7</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.2" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_64_c_compiler_version7cuda_compiler_version10.2cxx_compiler_version7" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_version11.0</td>
+              <td>linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_version11.1</td>
+              <td>linux_64_c_compiler_version9cuda_compiler_version11.1cxx_compiler_version9</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.1" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_64_c_compiler_version9cuda_compiler_version11.1cxx_compiler_version9" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -92,10 +85,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_cuda_compiler_version10.2</td>
+              <td>linux_ppc64le</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_cuda_compiler_version10.2" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -160,7 +153,8 @@ conda search cutensor --channel conda-forge
 About conda-forge
 =================
 
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
