@@ -1,21 +1,9 @@
 arm_variant_type: # [aarch64]
   - sbsa          # [aarch64]
 
-# When adding or removing cuda versions, make sure that the following entries are "zipped";
-# e.g. each entry in cuda_compiler_version must have a matching entry in the other keys,
-# considering the effect of the selector:
-#   cuda_compiler_version
-#   cudnn
-#   cdt_name
-#   docker_image
-
-#zip_keys:
-#  - - cuda_compiler_version   # [linux64 or ppc64le or aarch64]
-#    - cdt_name                # [linux64 or ppc64le or aarch64]
-#    - docker_image            # [linux64 and os.environ.get("BUILD_PLATFORM") == "linux-64"]
-#    - docker_image            # [ppc64le and os.environ.get("BUILD_PLATFORM") == "linux-ppc64le"]
-#    - docker_image            # [aarch64 and os.environ.get("BUILD_PLATFORM") == "linux-aarch64"]
-#    - cudnn                   # [linux64 or ppc64le or aarch64]
+# The added keys below are needed to enable ppc64le/aarch64 CUDA builds; the linux64
+# and win64 builds are already handled in the conda-forge-pinning feedstock. Once we
+# migrate to enable CUDA builds on all supported platforms, these can be removed too.
 
 docker_image:                                           # [os.environ.get("BUILD_PLATFORM", "").startswith("linux")]
    - quay.io/condaforge/linux-anvil-ppc64le-cuda:10.2   # [ppc64le and os.environ.get("BUILD_PLATFORM") == "linux-ppc64le"]
