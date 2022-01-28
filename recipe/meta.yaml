@@ -41,6 +41,8 @@ build:
     - del lib\\11\\*static*                                                # [win64 and cuda_compiler_version in ("11.1", )]
     - copy lib\\11\\*.dll %LIBRARY_BIN%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
     - copy lib\\11\\*.lib %LIBRARY_LIB%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
+  ignore_run_exports:
+    - cudatoolkit
   run_exports:
     - {{ pin_subpackage('cutensor') }}
 
