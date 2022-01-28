@@ -29,14 +29,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://travis-ci.com/conda-forge/cutensor-feedstock">
-        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/cutensor-feedstock/master.svg?label=macOS">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -85,10 +78,24 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le</td>
+              <td>linux_ppc64le_c_compiler_version8cuda_compiler_version10.2cxx_compiler_version8</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_c_compiler_version8cuda_compiler_version10.2cxx_compiler_version8" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_c_compiler_version9cuda_compiler_version11.1cxx_compiler_version9</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_c_compiler_version9cuda_compiler_version11.1cxx_compiler_version9" alt="variant">
                 </a>
               </td>
             </tr><tr>
