@@ -42,7 +42,7 @@ build:
     - copy lib\\11\\*.dll %LIBRARY_BIN%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
     - copy lib\\11\\*.lib %LIBRARY_LIB%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
   ignore_run_exports:
-     - cudatoolkit  # [cuda_compiler_version == "10.2"]  # does not link to cublasLt
+    - cudatoolkit  # [linux and cuda_compiler_version == "10.2"]  # does not link to cublasLt
   run_exports:
     - {{ pin_subpackage('cutensor') }}
 
