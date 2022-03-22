@@ -1,5 +1,5 @@
-{% set version = "1.4.0" %}
-{% set patch_version = "6" %}
+{% set version = "1.5.0" %}
+{% set patch_version = "3" %}
 
 package:
   name: cutensor
@@ -11,13 +11,13 @@ source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}.{{ patch_version }}-archive.tar.xz         # [aarch64]
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}.{{ patch_version }}-archive.zip    # [win64]
 
-  sha256: 467ba189195fcc4b868334fc16a0ae1e51574139605975cc8004cedebf595964  # [linux64]
-  sha256: 5da44ff2562ab7b9286122653e54f28d2222c8aab4bb02e9bdd4cf7e4b7809be  # [ppc64le]
-  sha256: 6b06d63a5bc49c1660be8c307795f8a901c93dcde7b064455a6c81333c7327f4  # [aarch64]
-  sha256: 4f01a8aac2c25177e928c63381a80e3342f214ec86ad66965dcbfe81fc5c901d  # [win64]
+  sha256: 4fdebe94f0ba3933a422cff3dd05a0ef7a18552ca274dd12564056993f55471d  # [linux64]
+  sha256: ad736acc94e88673b04a3156d7d3a408937cac32d083acdfbd8435582cbe15db  # [ppc64le]
+  sha256: 5b9ac479b1dadaf40464ff3076e45f2ec92581c07df1258a155b5bcd142f6090  # [aarch64]
+  sha256: de76f7d92600dda87a14ac756e9d0b5733cbceb88bcd20b3935a82c99342e6cd  # [win64]
 
 build:
-  number: 2
+  number: 0
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
   skip: True  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
   script_env:
