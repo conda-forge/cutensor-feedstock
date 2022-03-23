@@ -17,7 +17,7 @@ source:
   sha256: de76f7d92600dda87a14ac756e9d0b5733cbceb88bcd20b3935a82c99342e6cd  # [win64]
 
 build:
-  number: 1
+  number: 2
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
   skip: True  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
   script_env:
@@ -42,9 +42,10 @@ build:
     - copy lib\\11\\*.dll %LIBRARY_BIN%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
     - copy lib\\11\\*.lib %LIBRARY_LIB%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
   ignore_run_exports:
-    - cudatoolkit  # [linux and cuda_compiler_version == "10.2"]  # does not link to cublasLt
+    - cudatoolkit
   run_exports:
     - {{ pin_subpackage('cutensor') }}
+    - cudatoolkit
 
 requirements:
   build:
@@ -53,7 +54,6 @@ requirements:
     - sysroot_linux-64 2.17  # [linux64]
   host:
     - patchelf >=0.12  # [linux]
-  run:
     - cudatoolkit {{ cuda_compiler_version }}  # [cuda_compiler_version in ("10.2", "11.0")]
     - cudatoolkit >=11.1,<12                   # [cuda_compiler_version == "11.1"]
   run_constrained:
