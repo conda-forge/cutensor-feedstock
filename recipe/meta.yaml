@@ -45,10 +45,10 @@ build:
     - cudatoolkit
   run_exports:
     - {{ pin_subpackage('cutensor') }}
-  missing_dso_whitelist:
+  f:
     # suppress warning, as these are included in the run dependency
-    - libcublasLt.so.*  # [linux and cuda_compiler_version in ("11.0", "11.1")]
-    - cublasLt64*.dll   # [win64 and cuda_compiler_version in ("11.0", "11.1")]
+    - '*/libcublasLt.so*'  # [linux and cuda_compiler_version in ("11.0", "11.1")]
+    - '*/cublasLt64*.dll'  # [win64 and cuda_compiler_version in ("11.0", "11.1")]
 
 requirements:
   build:
