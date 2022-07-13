@@ -19,9 +19,6 @@ build:
   number: 0
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
   skip: true  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
-  script_env:
-    # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
-    - CUDA_HOME  # [ppc64le or aarch64]
   script:
     - mkdir -p $PREFIX/include                                             # [linux]
     - mv include/* $PREFIX/include/                                        # [linux]
