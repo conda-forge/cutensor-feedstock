@@ -1,15 +1,14 @@
-{% set version = "1.5.0" %}
-{% set patch_version = "3" %}
+{% set version = "1.5.0.3" %}
 
 package:
   name: cutensor
-  version: {{ version }}.{{ patch_version }}
+  version: {{ version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}.{{ patch_version }}-archive.tar.xz     # [linux64]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}.{{ patch_version }}-archive.tar.xz   # [ppc64le]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}.{{ patch_version }}-archive.tar.xz         # [aarch64]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}.{{ patch_version }}-archive.zip    # [win64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz     # [linux64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz   # [ppc64le]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz         # [aarch64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip    # [win64]
 
   sha256: 4fdebe94f0ba3933a422cff3dd05a0ef7a18552ca274dd12564056993f55471d  # [linux64]
   sha256: ad736acc94e88673b04a3156d7d3a408937cac32d083acdfbd8435582cbe15db  # [ppc64le]
