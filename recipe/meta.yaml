@@ -1,24 +1,24 @@
-{% set version = "1.5.0.3" %}
+{% set version = "1.6.0.3" %}
 
 package:
   name: cutensor
   version: {{ version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz     # [linux64]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz   # [ppc64le]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz         # [aarch64]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip    # [win64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz  # [linux64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz  # [ppc64le]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz  # [aarch64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip  # [win64]
 
-  sha256: 4fdebe94f0ba3933a422cff3dd05a0ef7a18552ca274dd12564056993f55471d  # [linux64]
-  sha256: ad736acc94e88673b04a3156d7d3a408937cac32d083acdfbd8435582cbe15db  # [ppc64le]
-  sha256: 5b9ac479b1dadaf40464ff3076e45f2ec92581c07df1258a155b5bcd142f6090  # [aarch64]
-  sha256: de76f7d92600dda87a14ac756e9d0b5733cbceb88bcd20b3935a82c99342e6cd  # [win64]
+  sha256: b07e32a37eee1df7d9330e6d7faf9baf7fffd58007e2544164ea30aec49a5281  # [linux64]
+  sha256: 6af9563a3581e1879dd17e9bae79ceae1b4084f45e735780125aab86056646eb  # [ppc64le]
+  sha256: 802f030de069e7eeec2e72f151471fc9776f0272a81804690c749373505dcb70  # [aarch64]
+  sha256: e8875e43d8c4169dc65095cb81c5d1e4120f664b4e2288658d73a4a2c2558f3c  # [win64]
 
 build:
-  number: 2
+  number: 0
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
-  skip: True  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
+  skip: true  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
   script_env:
     # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
     - CUDA_HOME  # [ppc64le or aarch64]
@@ -81,7 +81,7 @@ about:
   license: LicenseRef-cuTENSOR-Software-License-Agreement
   license_url: https://docs.nvidia.com/cuda/cutensor/license.html
   license_file: LICENSE
-  summary: "Tensor Linear Algebra on NVIDIA GPUs"
+  summary: Tensor Linear Algebra on NVIDIA GPUs
   description: |
     The cuTENSOR Library is a first-of-its-kind GPU-accelerated tensor linear
     algebra library providing tensor contraction, reduction and elementwise
