@@ -1,4 +1,4 @@
-{% set version = "1.6.1.5" %}
+{% set version = "1.6.2.3" %}
 
 package:
   name: cutensor
@@ -10,10 +10,10 @@ source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz  # [aarch64]
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip  # [win64]
 
-  sha256: 793b425c30ffd423c4f3a2e94acaf4fcb6752264aa73b74695a002dd2fe94b1a  # [linux64]
-  sha256: e895476ab13c4a28bdf018f23299746968564024783c066a2602bc0f09b86e47  # [ppc64le]
-  sha256: f0644bbdca81b890056a7b92714e787333b06a4bd384e4dfbdc3938fbd132e65  # [aarch64]
-  sha256: 36eac790df7b2c7bb4578cb355f1df65d17965ffc9b4f6218d1cdb82f87ab866  # [win64]
+  sha256: 0f2745681b1d0556f9f46ff6af4937662793498d7367b5f8f6b8625ac051629e  # [linux64]
+  sha256: 558329fa05409f914ebbe218a1cf7c9ccffdb7aa2642b96db85fd78b5ad534d1  # [ppc64le]
+  sha256: 7d4d9088c892bb692ffd70750b49625d1ccbb85390f6eb7c70d6cf582df6d935  # [aarch64]
+  sha256: 07cb312d7cafc7bb2f33d775e1ef5fffd1703d5c6656e785a7a8f0f01939907e  # [win64]
 
 build:
   number: 0
