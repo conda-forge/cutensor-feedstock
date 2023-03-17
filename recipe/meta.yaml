@@ -5,15 +5,15 @@ package:
   version: {{ version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz  # [linux64]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz  # [ppc64le]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz  # [aarch64]
-  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip  # [win64]
+  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz  # [linux64]
+  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz  # [ppc64le]
+  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz  # [aarch64]
+  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip  # [win64]
 
-  sha256: 0f2745681b1d0556f9f46ff6af4937662793498d7367b5f8f6b8625ac051629e  # [linux64]
-  sha256: 558329fa05409f914ebbe218a1cf7c9ccffdb7aa2642b96db85fd78b5ad534d1  # [ppc64le]
-  sha256: 7d4d9088c892bb692ffd70750b49625d1ccbb85390f6eb7c70d6cf582df6d935  # [aarch64]
-  sha256: 07cb312d7cafc7bb2f33d775e1ef5fffd1703d5c6656e785a7a8f0f01939907e  # [win64]
+  sha256: dd3557891371a19e73e7c955efe5383b0bee954aba6a30e4892b0e7acb9deb26  # [linux64]
+  sha256: af4ad5e29dcb636f1bf941ed1fd7fc8053eeec4813fbc0b41581e114438e84c8  # [ppc64le]
+  sha256: c31f8e4386539434a5d1643ebfed74572011783b4e21b62be52003e3a9de3720  # [aarch64]
+  sha256: cdbb53bcc1c7b20ee0aa2dee781644a324d2d5e8065944039024fe22d6b822ab  # [win64]
 
 build:
   number: 0
