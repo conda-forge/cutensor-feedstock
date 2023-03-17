@@ -252,6 +252,8 @@ In order to produce a uniquely identifiable distribution:
    the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
    back to 0.
 
+<!-- add dummy commit to try retriggering CI -->
+
 Feedstock Maintainers
 =====================
 
