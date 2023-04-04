@@ -1,4 +1,5 @@
 {% set version = "1.7.0.1" %}
+{% set cuda_major = "12" %}
 
 package:
   name: cutensor
@@ -16,49 +17,42 @@ source:
   sha256: cdbb53bcc1c7b20ee0aa2dee781644a324d2d5e8065944039024fe22d6b822ab  # [win64]
 
 build:
-  number: 0
+  number: 1
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
-  skip: true  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
-  script_env:
-    # for some reason /usr/local/cuda is not added to $PATH in ppc64le's docker image
-    - CUDA_HOME  # [ppc64le or aarch64]
+  # this recipe only supports CUDA 12; the other CUDA versions are in the cuda-11 branch
+  skip: true  # [win32]
   script:
     - mkdir -p $PREFIX/include                                             # [linux]
     - mv include/* $PREFIX/include/                                        # [linux]
     - mkdir -p $PREFIX/lib                                                 # [linux]
-    - mv lib/{{ cuda_compiler_version }}/*.so* $PREFIX/lib/                # [linux and cuda_compiler_version in ("10.2", "11.0")]
-    - mv lib/11/*.so* $PREFIX/lib/                                         # [linux and cuda_compiler_version == "11.1"]
+    - mv lib/{{ cuda_major }}/*.so* $PREFIX/lib/                           # [linux]
     - patchelf --add-needed libcudart.so $PREFIX/lib/libcutensor.so        # [ppc64le]
 
     - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
     - copy include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
-    - del lib\\{{ cuda_compiler_version }}\\*static*                       # [win64 and cuda_compiler_version in ("10.2", "11.0")]
-    - copy lib\\{{ cuda_compiler_version }}\\*.dll %LIBRARY_BIN%\\         # [win64 and cuda_compiler_version in ("10.2", "11.0")]
-    - copy lib\\{{ cuda_compiler_version }}\\*.lib %LIBRARY_LIB%\\         # [win64 and cuda_compiler_version in ("10.2", "11.0")]
-    - del lib\\11\\*static*                                                # [win64 and cuda_compiler_version in ("11.1", )]
-    - copy lib\\11\\*.dll %LIBRARY_BIN%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
-    - copy lib\\11\\*.lib %LIBRARY_LIB%\\                                  # [win64 and cuda_compiler_version in ("11.1", )]
-  ignore_run_exports:
-    - cudatoolkit
+    - del lib\\{{ cuda_major }}\\*static*                                  # [win64]
+    - copy lib\\{{ cuda_major }}\\*.dll %LIBRARY_BIN%\\                    # [win64]
+    - copy lib\\{{ cuda_major }}\\*.lib %LIBRARY_LIB%\\                    # [win64]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
   missing_dso_whitelist:
     # suppress warning, as these are included in the run dependency
-    - '*/libcublasLt.so*'  # [linux and cuda_compiler_version in ("11.0", "11.1")]
-    - '*/cublasLt64*.dll'  # [win64 and cuda_compiler_version in ("11.0", "11.1")]
+    - '*/libcublasLt.so*'  # [linux]
+    - '*/cublasLt64*.dll'  # [win64]
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ compiler('cuda') }}
-    - sysroot_linux-64 2.17  # [linux64]
+    - {{ compiler('cxx') }}
+    - sysroot_{{ target_platform }} 2.17  # [linux64]
   host:
     - patchelf >=0.12  # [linux]
+    - cuda-version 12.0.0
   run:
-    - cudatoolkit {{ cuda_compiler_version }}  # [cuda_compiler_version in ("10.2", "11.0")]
-    - cudatoolkit >=11.1,<12                   # [cuda_compiler_version == "11.1"]
+    - {{ pin_compatible("cuda-version", max_pin="x") }}
+    - libcublas
   run_constrained:
     # Only GLIBC_2.17 or older symbols present
     - __glibc >=2.17      # [linux]
@@ -68,11 +62,7 @@ test:
     - git
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}
-    - sysroot_linux-64 2.17  # [linux]
-    # make sure we pick up the version matching the docker,
-    # or the linker would complain 
-    - cudatoolkit {{ cuda_compiler_version }}
+    - sysroot_{{ target_platform }} 2.17  # [linux]
   files:
     - test_load_elf.c        # [linux]
 
