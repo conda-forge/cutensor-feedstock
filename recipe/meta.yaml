@@ -1,16 +1,18 @@
 {% set version = "1.7.0.1" %}
-{% set cuda_major = "12" %}
+{% set cuda_version = "12.0" %}
+{% set platform = "linux-x86_64" %}  # [linux64]
+{% set platform = "linux-ppc64le" %}  # [ppc64le]
+{% set platform = "linux-sbsa" %}  # [aarch64]
+{% set platform = "windows-x86_64" %}  # [win]
+{% set extension = "tar.xz" %}  # [not win]
+{% set extension = "zip" %}  # [win]
 
 package:
   name: cutensor
   version: {{ version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz  # [linux64]
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz  # [ppc64le]
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz  # [aarch64]
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip  # [win64]
-
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/{{ platform }}/libcutensor-{{ platform }}-{{ version }}-archive.{{ extension }}
   sha256: dd3557891371a19e73e7c955efe5383b0bee954aba6a30e4892b0e7acb9deb26  # [linux64]
   sha256: af4ad5e29dcb636f1bf941ed1fd7fc8053eeec4813fbc0b41581e114438e84c8  # [ppc64le]
   sha256: c31f8e4386539434a5d1643ebfed74572011783b4e21b62be52003e3a9de3720  # [aarch64]
@@ -25,16 +27,16 @@ build:
     - mkdir -p $PREFIX/include                                             # [linux]
     - mv include/* $PREFIX/include/                                        # [linux]
     - mkdir -p $PREFIX/lib                                                 # [linux]
-    - mv lib/{{ cuda_major }}/*.so* $PREFIX/lib/                           # [linux]
+    - mv lib/{{ cuda_version }}/*.so* $PREFIX/lib/                           # [linux]
     - patchelf --add-needed libcudart.so $PREFIX/lib/libcutensor.so        # [ppc64le]
 
     - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
     - copy include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
-    - del lib\\{{ cuda_major }}\\*static*                                  # [win64]
-    - copy lib\\{{ cuda_major }}\\*.dll %LIBRARY_BIN%\\                    # [win64]
-    - copy lib\\{{ cuda_major }}\\*.lib %LIBRARY_LIB%\\                    # [win64]
+    - del lib\\{{ cuda_version }}\\*static*                                  # [win64]
+    - copy lib\\{{ cuda_version }}\\*.dll %LIBRARY_BIN%\\                    # [win64]
+    - copy lib\\{{ cuda_version }}\\*.lib %LIBRARY_LIB%\\                    # [win64]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
   missing_dso_whitelist:
@@ -46,16 +48,18 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - sysroot_{{ target_platform }} 2.17  # [linux64]
+    - arm-variant * {{ arm_variant_type }}  # [aarch64]
+    - sysroot_{{ target_platform }} 2.17    # [linux64]
   host:
     - patchelf >=0.12  # [linux]
-    - cuda-version 12.0.0
+    - cuda-version {{ cuda_version }}
   run:
     - {{ pin_compatible("cuda-version", max_pin="x") }}
     - libcublas
   run_constrained:
     # Only GLIBC_2.17 or older symbols present
     - __glibc >=2.17      # [linux]
+    - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
 test:
   requires:
