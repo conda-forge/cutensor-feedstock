@@ -29,14 +29,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/cutensor-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/cutensor-feedstock/main.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -68,41 +61,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_version11.0</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version11.0" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_version11.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version11.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_c_compiler_version8cuda_compiler_version10.2cxx_compiler_version8</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_c_compiler_version8cuda_compiler_version10.2cxx_compiler_version8" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_c_compiler_version9cuda_compiler_version11.1cxx_compiler_version9</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11699&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cutensor-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_c_compiler_version9cuda_compiler_version11.1cxx_compiler_version9" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -252,8 +210,6 @@ In order to produce a uniquely identifiable distribution:
    the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
    back to 0.
 
-<!-- add dummy commit to try retriggering CI -->
-
 Feedstock Maintainers
 =====================
 
@@ -261,7 +217,4 @@ Feedstock Maintainers
 * [@jakirkham](https://github.com/jakirkham/)
 * [@leofang](https://github.com/leofang/)
 * [@mtjrider](https://github.com/mtjrider/)
-
-
-<!-- dummy commit to enable rerendering -->
 
