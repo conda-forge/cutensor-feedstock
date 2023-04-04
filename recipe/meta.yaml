@@ -20,7 +20,7 @@ build:
   number: 1
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
   # this recipe only supports CUDA 12; the other CUDA versions are in the cuda-11 branch
-  skip: true  # [win32]
+  skip: true  # [win32 or osx]
   script:
     - mkdir -p $PREFIX/include                                             # [linux]
     - mv include/* $PREFIX/include/                                        # [linux]
