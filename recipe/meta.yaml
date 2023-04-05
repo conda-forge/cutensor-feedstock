@@ -52,6 +52,7 @@ requirements:
   host:
     #- patchelf >=0.12  # [linux]
     - cuda-version {{ cuda_major }}.0
+    - libcublas
   run:
     - {{ pin_compatible("cuda-version", max_pin="x") }}
     - libcublas
