@@ -5,10 +5,10 @@ package:
   version: {{ version }}
 
 source:
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz  # [linux64]
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz  # [ppc64le]
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz  # [aarch64]
-  url: https://developer.download.nvidia.com/compute/cutensor/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip  # [win64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-{{ version }}-archive.tar.xz  # [linux64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-{{ version }}-archive.tar.xz  # [ppc64le]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-{{ version }}-archive.tar.xz  # [aarch64]
+  url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/windows-x86_64/libcutensor-windows-x86_64-{{ version }}-archive.zip  # [win64]
 
   sha256: dd3557891371a19e73e7c955efe5383b0bee954aba6a30e4892b0e7acb9deb26  # [linux64]
   sha256: af4ad5e29dcb636f1bf941ed1fd7fc8053eeec4813fbc0b41581e114438e84c8  # [ppc64le]
@@ -16,7 +16,7 @@ source:
   sha256: cdbb53bcc1c7b20ee0aa2dee781644a324d2d5e8065944039024fe22d6b822ab  # [win64]
 
 build:
-  number: 0
+  number: 1
   # cuTENSOR v1.3.1 supports CUDA 10.2, 11.0, and 11.1+
   skip: true  # [win32 or cuda_compiler_version not in ("10.2", "11.0", "11.1")]
   script_env:
@@ -62,6 +62,9 @@ requirements:
   run_constrained:
     # Only GLIBC_2.17 or older symbols present
     - __glibc >=2.17      # [linux]
+    - cuda-version 10.2        # [cuda_compiler_version == "10.2"]
+    - cuda-version 11.0        # [cuda_compiler_version == "11.0"]
+    - cuda-version >=11.1,<12  # [cuda_compiler_version == "11.1"]
 
 test:
   requires:
