@@ -78,6 +78,8 @@ test:
     # make sure we pick up the version matching the docker,
     # or the linker would complain 
     - cudatoolkit {{ cuda_compiler_version }}  # [(cuda_compiler_version or "").startswith("11")]
+    # need the libcuda stub for import test
+    - cuda-driver-dev                          # [(cuda_compiler_version or "").startswith("12")]
   files:
     - test_load_elf.c        # [linux]
 
