@@ -7,8 +7,12 @@ test -f $PREFIX/include/cutensor/types.h
 test -f $PREFIX/lib/libcutensor.so
 test -f $PREFIX/lib/libcutensorMg.so
 ${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf
-./test_load_elf $PREFIX/lib/libcutensor.so
-./test_load_elf $PREFIX/lib/libcutensorMg.so
+# need to load the stub for CUDA 12
+if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
+    export CUDA_STUB="$PREFIX/lib/stubs/libcuda.so"
+fi    
+LD_PRELOAD="$CUDA_STUB" ./test_load_elf $PREFIX/lib/libcutensor.so
+LD_PRELOAD="$CUDA_STUB" ./test_load_elf $PREFIX/lib/libcutensorMg.so
 
 NVCC_FLAGS=""
 # Workaround __ieee128 error; see https://github.com/LLNL/blt/issues/341
