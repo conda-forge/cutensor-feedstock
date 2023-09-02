@@ -1,11 +1,17 @@
 {% set version = "1.7.0.1" %}
-{% set cuda_major = "12" %}
-{% set platform = "linux-x86_64" %}  # [linux64]
-{% set platform = "linux-ppc64le" %}  # [ppc64le]
-{% set platform = "linux-sbsa" %}  # [aarch64]
+
+{% if cuda_compiler_version in (None, "None", True, False) %}
+{% set cuda_major = 0 %}
+{% else %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.2").split(".")[0] | int %}
+{% endif %}
+
+{% set platform = "linux-x86_64" %}    # [linux64]
+{% set platform = "linux-ppc64le" %}   # [ppc64le]
+{% set platform = "linux-sbsa" %}      # [aarch64]
 {% set platform = "windows-x86_64" %}  # [win]
 {% set extension = "tar.xz" %}  # [not win]
-{% set extension = "zip" %}  # [win]
+{% set extension = "zip" %}     # [win]
 
 package:
   name: cutensor
@@ -19,15 +25,13 @@ source:
   sha256: cdbb53bcc1c7b20ee0aa2dee781644a324d2d5e8065944039024fe22d6b822ab  # [win64]
 
 build:
-  number: 1
-  # this recipe only supports CUDA 12; the other CUDA versions are in the cuda-11 branch
-  skip: true  # [win32 or osx]
+  number: 2
+  skip: true  # [win32 or osx or cuda_compiler_version not in ("11.2", "12.0")]
   script:
     - mkdir -p $PREFIX/include                                             # [linux]
     - mv include/* $PREFIX/include/                                        # [linux]
     - mkdir -p $PREFIX/lib                                                 # [linux]
     - mv lib/{{ cuda_major }}/*.so* $PREFIX/lib/                           # [linux]
-    - patchelf --add-needed libcudart.so $PREFIX/lib/libcutensor.so        # [ppc64le]
 
     - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
@@ -38,6 +42,8 @@ build:
     - copy lib\\{{ cuda_major }}\\*.lib %LIBRARY_LIB%\\                    # [win64]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
+  ignore_run_exports:
+    - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
   missing_dso_whitelist:
     - "*/libcuda.so.*"    # [linux]
     - "*/nvcuda.dll"      # [win]
@@ -46,15 +52,17 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
     - sysroot_{{ target_platform }} 2.17    # [linux]
   host:
     - patchelf >=0.12  # [linux]
     - cuda-version {{ cuda_major }}.0
-    - libcublas
+    - libcublas  # [(cuda_compiler_version or "").startswith("12")]
   run:
     - {{ pin_compatible("cuda-version", max_pin="x") }}
-    - libcublas
+    - cudatoolkit >=11.1,<12  # [(cuda_compiler_version or "").startswith("11")]
+    - libcublas               # [(cuda_compiler_version or "").startswith("12")]
   run_constrained:
     # Only GLIBC_2.17 or older symbols present
     - __glibc >=2.17      # [linux]
@@ -65,7 +73,11 @@ test:
     - git
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}
     - sysroot_{{ target_platform }} 2.17  # [linux]
+    # make sure we pick up the version matching the docker,
+    # or the linker would complain 
+    - cudatoolkit {{ cuda_compiler_version }}  # [(cuda_compiler_version or "").startswith("11")]
   files:
     - test_load_elf.c        # [linux]
 
