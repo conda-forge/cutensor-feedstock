@@ -232,6 +232,3 @@ Feedstock Maintainers
 * [@leofang](https://github.com/leofang/)
 * [@mtjrider](https://github.com/mtjrider/)
 
-
-<!-- dummy commit to enable rerendering -->
-
