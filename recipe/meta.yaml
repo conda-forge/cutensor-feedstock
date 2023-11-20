@@ -1,4 +1,4 @@
-{% set version = "1.7.0.1" %}
+{% set version = "2.0.0.7" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -6,12 +6,12 @@
 {% set cuda_major = environ.get("cuda_compiler_version", "11.2").split(".")[0] | int %}
 {% endif %}
 
-{% set platform = "linux-x86_64" %}    # [linux64]
-{% set platform = "linux-ppc64le" %}   # [ppc64le]
-{% set platform = "linux-sbsa" %}      # [aarch64]
+{% set platform = "linux-x86_64" %}  # [linux64]
+{% set platform = "linux-ppc64le" %}  # [ppc64le]
+{% set platform = "linux-sbsa" %}  # [aarch64]
 {% set platform = "windows-x86_64" %}  # [win]
 {% set extension = "tar.xz" %}  # [not win]
-{% set extension = "zip" %}     # [win]
+{% set extension = "zip" %}  # [win]
 
 package:
   name: cutensor
@@ -22,10 +22,10 @@ source:
   sha256: dd3557891371a19e73e7c955efe5383b0bee954aba6a30e4892b0e7acb9deb26  # [linux64]
   sha256: af4ad5e29dcb636f1bf941ed1fd7fc8053eeec4813fbc0b41581e114438e84c8  # [ppc64le]
   sha256: c31f8e4386539434a5d1643ebfed74572011783b4e21b62be52003e3a9de3720  # [aarch64]
-  sha256: cdbb53bcc1c7b20ee0aa2dee781644a324d2d5e8065944039024fe22d6b822ab  # [win64]
+  sha256: 925a7306fa72f8f59ca9fe765987f0943bbae4ac030f3e8217d53789e0870a35  # [win64]
 
 build:
-  number: 3
+  number: 0
   skip: true  # [win32 or osx or cuda_compiler_version not in ("11.2", "12.0")]
   script:
     - mkdir -p $PREFIX/include                                             # [linux]
