@@ -19,10 +19,10 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/{{ platform }}/libcutensor-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: df6338aed18e5b6ae0c49521053d1606d2a41e187d7f5eccf9180af6bbc4ef68  # [linux64]
-  sha256: 46108587bb1e88632457f18f26b17d0dddb6923d161285d42307aca7ada471ca  # [ppc64le]
-  sha256: 071f2d6d94a37ca59835b16340038d48e1c1438ea6ca7c0bfd4730473fdb4473  # [aarch64]
-  sha256: 6ba9e03ee76dd0a5ace281ce703baf1175e0884b535924c3af88206d8951e33b  # [win64]
+  sha256: c06e58e7b9ac507acd2b669995348882d9cb46f99f3f22a0e391ca47d8a3c8f4  # [linux64]
+  sha256: 2ce0e35c895976510dd52f573284c1018748733afdf1e253cc6ded34839edbdd  # [ppc64le]
+  sha256: bed7fa58cae9c96de99d6908d4b2b4cc3e27fb5c18c71a9fb667a2511f6eee2d  # [aarch64]
+  sha256: 327a83c7230af5930979b4071ad193c44848822611fce68a2465556d62f0a9a4  # [win64]
 
 build:
   number: 0
