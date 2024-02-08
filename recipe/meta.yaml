@@ -1,4 +1,4 @@
-{% set version = "2.0.0.7" %}
+{% set version = "2.0.1.2" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -19,10 +19,10 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/{{ platform }}/libcutensor-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: df6338aed18e5b6ae0c49521053d1606d2a41e187d7f5eccf9180af6bbc4ef68  # [linux64]
-  sha256: 46108587bb1e88632457f18f26b17d0dddb6923d161285d42307aca7ada471ca  # [ppc64le]
-  sha256: 071f2d6d94a37ca59835b16340038d48e1c1438ea6ca7c0bfd4730473fdb4473  # [aarch64]
-  sha256: 925a7306fa72f8f59ca9fe765987f0943bbae4ac030f3e8217d53789e0870a35  # [win64]
+  sha256: ededa12ca622baad706ea0a500a358ea51146535466afabd96e558265dc586a2  # [linux64]
+  sha256: 7176083a4dad44cb0176771be6efb3775748ad30a39292bf7b4584510f1dd811  # [ppc64le]
+  sha256: 4214a0f7b44747c738f2b643be06b2b24826bd1bae6af27f29f3c6dec131bdeb  # [aarch64]
+  sha256: 6ba9e03ee76dd0a5ace281ce703baf1175e0884b535924c3af88206d8951e33b  # [win64]
 
 build:
   number: 0
