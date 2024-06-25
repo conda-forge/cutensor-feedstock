@@ -1,4 +1,4 @@
-{% set version = "2.0.1.2" %}
+{% set version = "2.0.2.4" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -22,7 +22,7 @@ source:
   sha256: ededa12ca622baad706ea0a500a358ea51146535466afabd96e558265dc586a2  # [linux64]
   sha256: 7176083a4dad44cb0176771be6efb3775748ad30a39292bf7b4584510f1dd811  # [ppc64le]
   sha256: 4214a0f7b44747c738f2b643be06b2b24826bd1bae6af27f29f3c6dec131bdeb  # [aarch64]
-  sha256: 6ba9e03ee76dd0a5ace281ce703baf1175e0884b535924c3af88206d8951e33b  # [win64]
+  sha256: ab2fca16d410863d14f2716cec0d07fb21d20ecd24ee47d309e9970c9c01ed4a  # [win64]
 
 build:
   number: 0
@@ -51,6 +51,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
