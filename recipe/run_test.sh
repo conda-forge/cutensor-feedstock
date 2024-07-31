@@ -48,6 +48,7 @@ compile () {
     local _exit=$?
 
     if [ ${_exit} -ne 0 ]; then
+      EXIT_STATUS="${_exit}"
       echo "nonzero exit code: ${_exit}"
       echo "error compiling ${source}"
       cat "${_stderr}"
@@ -58,7 +59,6 @@ compile () {
     fi
 
     rm -f "${_stdout}" "${_stderr}"
-    EXIT_STATUS="${_exit}"
 }
 
 EXIT_STATUS=0
