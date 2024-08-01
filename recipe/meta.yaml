@@ -64,8 +64,6 @@ requirements:
     - cudatoolkit >=11.1,<12  # [(cuda_compiler_version or "").startswith("11")]
     - libcublas               # [(cuda_compiler_version or "").startswith("12")]
   run_constrained:
-    # Only GLIBC_2.17 or older symbols present
-    - __glibc >=2.17      # [linux]
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
 test:
