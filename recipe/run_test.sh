@@ -35,31 +35,23 @@ compile () {
     local source=${1}
     local output=${2}
     local link_libraries=${3}
-    local _stdout _stderr
-
-    _stdout=$(mktemp)
-    _stderr=$(mktemp)
-
-    nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output} > "${_stdout}" 2> "${_stderr}"
-    local _exit=$?
-
-    cat "${_stderr}"
-    echo
+    # local command="nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output}"
+    nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output}
+    # local _output=$( eval "${command}" 2>&1 ; )
+    # local _status=$?
     
-    if [ ${_exit} -ne 0 ]; then
-      EXIT_STATUS="${_exit}"
-      echo "nonzero exit code: ${_exit}"
-      echo "error compiling ${source}"
-    else
-      echo "zero exit code: ${_exit}"
-      echo "successfully compiled ${source}"
-      cat "${_stdout}"
-    fi
-
-    rm -f "${_stdout}" "${_stderr}"
+    # if [ ${_status} -ne 0 ]; then
+    #   EXIT_STATUS=${_status}
+    #   echo "detected nonzero exit code: ${_exit}"
+    #   echo "error compiling ${source}"
+    #   echo "${_output}"
+    # else
+    #   echo "detected zero exit code: ${_exit}"
+    #   echo "successfully compiled ${source}"
+    # fi
 }
 
-EXIT_STATUS=0
+# EXIT_STATUS=0
 git clone https://github.com/NVIDIA/CUDALibrarySamples.git sample_linux/
 cd sample_linux/cuTENSOR/
 compile "contraction.cu" "contraction" "-lcutensor -lcudart"
@@ -73,4 +65,4 @@ compile "contraction_multi_gpu.cu" "contraction_multi_gpu" "-lcutensorMg -lcuten
 # error_log=$(nvcc $NVCC_FLAGS --std=c++11 -I$PREFIX/include -L$PREFIX/lib -lcutensorMg -lcutensor -lcudart contraction_multi_gpu.cu -o contraction_multi_gpu 2>&1)
 # echo $error_log
 
-exit ${EXIT_STATUS}
+# exit ${EXIT_STATUS}
