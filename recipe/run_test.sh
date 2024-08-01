@@ -40,14 +40,16 @@ compile () {
     _stdout=$(mktemp)
     _stderr=$(mktemp)
 
-    nvcc ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} --output-file $output > "${_stdout}" 2> "${_stderr}"
+    nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output} > "${_stdout}" 2> "${_stderr}"
     local _exit=$?
 
+    cat "${_stderr}"
+    echo
+    
     if [ ${_exit} -ne 0 ]; then
       EXIT_STATUS="${_exit}"
       echo "nonzero exit code: ${_exit}"
       echo "error compiling ${source}"
-      cat "${_stderr}"
     else
       echo "zero exit code: ${_exit}"
       echo "successfully compiled ${source}"
