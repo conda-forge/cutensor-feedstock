@@ -8,8 +8,7 @@ test -f $PREFIX/lib/libcutensor.so
 test -f $PREFIX/lib/libcutensorMg.so
 
 # the aarch64 binary requires newer glibc that conda-forge currently lacks
-# (the tests can still run for CUDA 11 because the docker image in use happens to have newer glibc)
-if [[ $target_platform == linux-aarch64 && "${cuda_compiler_version}" =~ 12.* ]]; then
+if [[ $target_platform == linux-aarch64 ]]; then
     exit 0
 fi
 # we cross-build for ppc64le and it does not have newer glibc either
@@ -35,8 +34,9 @@ compile () {
     local source=${1}
     local output=${2}
     local link_libraries=${3}
-    # local command="nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output}"
-    nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output}
+    local command="nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output}"
+    
+    # nvcc --verbose ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} -o ${output}
     # local _output=$( eval "${command}" 2>&1 ; )
     # local _status=$?
     
