@@ -40,11 +40,7 @@ compile () {
     _stdout=$(mktemp)
     _stderr=$(mktemp)
 
-    nvcc ${NVCC_FLAGS} --std=c++11 \
-      -I${PREFIX}/include \
-      -L${PREFIX}/lib ${link_libraries} \
-      ${source} --output-file $output \
-    > "${_stdout}" 2> "${_stderr}"
+    nvcc ${NVCC_FLAGS} --std=c++11 -I${PREFIX}/include -L${PREFIX}/lib ${link_libraries} ${source} --output-file $output > "${_stdout}" 2> "${_stderr}"
     local _exit=$?
 
     if [ ${_exit} -ne 0 ]; then
