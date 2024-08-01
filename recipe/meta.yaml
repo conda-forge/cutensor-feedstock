@@ -59,12 +59,15 @@ requirements:
     - patchelf >=0.12  # [linux]
     - cuda-version {{ cuda_major }}.0
     - libcublas  # [(cuda_compiler_version or "").startswith("12")]
+    - {{ stdlib('c') }}
   run:
     - {{ pin_compatible("cuda-version", max_pin="x") }}
     - cudatoolkit >=11.1,<12  # [(cuda_compiler_version or "").startswith("11")]
     - libcublas               # [(cuda_compiler_version or "").startswith("12")]
+    - {{ stdlib('c') }}
   run_constrained:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
+    - {{ stdlib('c') }}
 
 test:
   requires:
@@ -72,7 +75,7 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-    - sysroot_{{ target_platform }} 2.17  # [linux]
+    - {{ stdlib('c') }}
     # make sure we pick up the version matching the docker,
     # or the linker would complain 
     - cudatoolkit {{ cuda_compiler_version }}  # [(cuda_compiler_version or "").startswith("11")]
