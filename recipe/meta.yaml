@@ -59,7 +59,6 @@ requirements:
     - patchelf >=0.12  # [linux]
     - cuda-version {{ cuda_major }}.0
     - libcublas  # [(cuda_compiler_version or "").startswith("12")]
-    - {{ stdlib('c') }}
   run:
     - {{ pin_compatible("cuda-version", max_pin="x") }}
     - cudatoolkit >=11.1,<12  # [(cuda_compiler_version or "").startswith("11")]
