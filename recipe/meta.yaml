@@ -64,7 +64,6 @@ requirements:
     - {{ pin_compatible("cuda-version", max_pin="x") }}
     - cudatoolkit >=11.1,<12  # [(cuda_compiler_version or "").startswith("11")]
     - libcublas               # [(cuda_compiler_version or "").startswith("12")]
-    - {{ stdlib('c') }}
   run_constrained:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
     - {{ stdlib('c') }}
