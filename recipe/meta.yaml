@@ -1,4 +1,4 @@
-{% set version = "2.0.1.2" %}
+{% set version = "2.0.2.5" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -19,10 +19,10 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/{{ platform }}/libcutensor-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: ededa12ca622baad706ea0a500a358ea51146535466afabd96e558265dc586a2  # [linux64]
-  sha256: 7176083a4dad44cb0176771be6efb3775748ad30a39292bf7b4584510f1dd811  # [ppc64le]
-  sha256: 4214a0f7b44747c738f2b643be06b2b24826bd1bae6af27f29f3c6dec131bdeb  # [aarch64]
-  sha256: 6ba9e03ee76dd0a5ace281ce703baf1175e0884b535924c3af88206d8951e33b  # [win64]
+  sha256: 0e957ae7b352f599de34b6fa1ba999b0617887f885d7436ac5737d71a6b83baa  # [linux64]
+  sha256: e351dc1e69bd0c5ac45b6ef311ee2b510c8ff6f0b350b0354d6db5563e8fabae  # [ppc64le]
+  sha256: 5163dd40f11f328e469a6d9b0056c8346f5d59ed538c18d6b954e4ae657c69cc  # [aarch64]
+  sha256: 3c40b47d164fb0cdbd4a420d0cfac130ca70535743ad7dfb746cd80da5f9600a  # [win64]
 
 build:
   number: 0
@@ -51,10 +51,10 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
-    - sysroot_{{ target_platform }} 2.17    # [linux]
   host:
     - patchelf >=0.12  # [linux]
     - cuda-version {{ cuda_major }}.0
@@ -64,9 +64,8 @@ requirements:
     - cudatoolkit >=11.1,<12  # [(cuda_compiler_version or "").startswith("11")]
     - libcublas               # [(cuda_compiler_version or "").startswith("12")]
   run_constrained:
-    # Only GLIBC_2.17 or older symbols present
-    - __glibc >=2.17      # [linux]
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
+    - {{ stdlib('c') }}
 
 test:
   requires:
@@ -74,7 +73,7 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-    - sysroot_{{ target_platform }} 2.17  # [linux]
+    - {{ stdlib('c') }}
     # make sure we pick up the version matching the docker,
     # or the linker would complain 
     - cudatoolkit {{ cuda_compiler_version }}  # [(cuda_compiler_version or "").startswith("11")]
