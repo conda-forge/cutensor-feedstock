@@ -104,6 +104,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - conda-forge/cuda
     - v0i0
     - yangcal
     - JeremyWangNVDA
