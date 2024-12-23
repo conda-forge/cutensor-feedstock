@@ -27,12 +27,7 @@ source:
 build:
   number: 1
   skip: true  # [win32 or osx or cuda_compiler_version in (None, "None")]
-  script:
-    - mkdir -p $PREFIX/include                                             # [linux]
-    - mv include/* $PREFIX/include/                                        # [linux]
-    - mkdir -p $PREFIX/lib                                                 # [linux]
-    - mv lib/{{ cuda_major }}/*.so* $PREFIX/lib/                           # [linux]
-
+  script:  # [win64]
     - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
