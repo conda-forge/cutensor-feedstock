@@ -42,8 +42,8 @@ build:
     - copy lib\\{{ cuda_major }}\\*.lib %LIBRARY_LIB%\\                    # [win64]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
-  ignore_run_exports:
-    - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
+  ignore_run_exports_from:
+    - {{ compiler('cuda') }}
   missing_dso_whitelist:
     - "*/libcuda.so.*"    # [linux]
     - "*/nvcuda.dll"      # [win]
@@ -57,11 +57,15 @@ requirements:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
   host:
     - patchelf >=0.12  # [linux]
-    - cuda-version {{ cuda_major }}.0
+    - cuda-version {{ cuda_compiler_version }}
+    - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
     - libcublas  # [(cuda_compiler_version or "").startswith("12")]
   run:
-    - {{ pin_compatible("cuda-version", max_pin="x") }}
-    - cudatoolkit >=11.1,<12  # [(cuda_compiler_version or "").startswith("11")]
+    # https://docs.nvidia.com/cuda/cutensor/latest/release_notes.html#cutensor-v2-0-0
+    # Minimum supported CTK is 11.2 as of v2.0
+    - {{ pin_compatible("cuda-version", min_pin=11.2, max_pin="x") }}  # [(cuda_compiler_version or "").startswith("11")]
+    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}   # [(cuda_compiler_version or "").startswith("12")]
+    - cudatoolkit             # [(cuda_compiler_version or "").startswith("11")]
     - libcublas               # [(cuda_compiler_version or "").startswith("12")]
   run_constrained:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
@@ -72,9 +76,6 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-    # make sure we pick up the version matching the docker,
-    # or the linker would complain
-    - cudatoolkit {{ cuda_compiler_version }}  # [(cuda_compiler_version or "").startswith("11")]
     # need the libcuda stub for import test
     - cuda-driver-dev                          # [linux and (cuda_compiler_version or "").startswith("12")]
   files:
