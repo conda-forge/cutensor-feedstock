@@ -65,7 +65,6 @@ requirements:
     - libcublas               # [(cuda_compiler_version or "").startswith("12")]
   run_constrained:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
-    - {{ stdlib('c') }}
 
 test:
   requires:
@@ -73,9 +72,8 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-    - {{ stdlib('c') }}
     # make sure we pick up the version matching the docker,
-    # or the linker would complain 
+    # or the linker would complain
     - cudatoolkit {{ cuda_compiler_version }}  # [(cuda_compiler_version or "").startswith("11")]
     # need the libcuda stub for import test
     - cuda-driver-dev                          # [linux and (cuda_compiler_version or "").startswith("12")]
