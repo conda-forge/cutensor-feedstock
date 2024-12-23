@@ -26,7 +26,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [win32 or osx or cuda_compiler_version not in ("11.8", "12.0")]
+  skip: true  # [win32 or osx or cuda_compiler_version in (None, "None")]
   script:
     - mkdir -p $PREFIX/include                                             # [linux]
     - mv include/* $PREFIX/include/                                        # [linux]
