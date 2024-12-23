@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
+export CUDA_MAJOR=${cuda_compiler_version%%.*}
+
 mkdir -p $PREFIX/include
 mv include/* $PREFIX/include/
 mkdir -p $PREFIX/lib
-mv lib/{{ cuda_major }}/*.so* $PREFIX/lib/
+mv lib/$CUDA_MAJOR/*.so* $PREFIX/lib/
 
 if [[ -f "${RECIPE_DIR}/common/detect-glibc" ]] ; then
   source "${RECIPE_DIR}/common/detect-glibc"
