@@ -58,7 +58,7 @@ requirements:
   run:
     # https://docs.nvidia.com/cuda/cutensor/latest/release_notes.html#cutensor-v2-0-0
     # Minimum supported CTK is 11.2 as of v2.0
-    - {{ pin_compatible("cuda-version", min_pin=11.2, max_pin="x") }}  # [(cuda_compiler_version or "").startswith("11")]
+    - {{ pin_compatible("cuda-version", min_pin="11.2.0", max_pin="x") }}  # [(cuda_compiler_version or "").startswith("11")]
     - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}   # [(cuda_compiler_version or "").startswith("12")]
     - cudatoolkit             # [(cuda_compiler_version or "").startswith("11")]
     - libcublas               # [(cuda_compiler_version or "").startswith("12")]
