@@ -7,21 +7,11 @@ test -f $PREFIX/include/cutensor/types.h
 test -f $PREFIX/lib/libcutensor.so
 test -f $PREFIX/lib/libcutensorMg.so
 
-# the aarch64 binary requires newer glibc that conda-forge currently lacks
-# (the tests can still run for CUDA 11 because the docker image in use happens to have newer glibc)
-if [[ $target_platform == linux-aarch64 ]]; then
-    exit 0
-fi
-# we cross-build for ppc64le and it does not have newer glibc either
-if [[ $target_platform == linux-ppc64le ]]; then
-    exit 0
-fi
-
 ${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf
 # need to load the stub for CUDA 12
 if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
     export CUDA_STUB="$PREFIX/lib/stubs/libcuda.so"
-fi    
+fi
 LD_PRELOAD="$CUDA_STUB" ./test_load_elf $PREFIX/lib/libcutensor.so
 LD_PRELOAD="$CUDA_STUB" ./test_load_elf $PREFIX/lib/libcutensorMg.so
 
