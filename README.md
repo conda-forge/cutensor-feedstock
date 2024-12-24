@@ -228,6 +228,7 @@ Feedstock Maintainers
 =====================
 
 * [@JeremyWangNVDA](https://github.com/JeremyWangNVDA/)
+* [@conda-forge/cuda](https://github.com/orgs/conda-forge/teams/cuda/)
 * [@jakirkham](https://github.com/jakirkham/)
 * [@leofang](https://github.com/leofang/)
 * [@mtjrider](https://github.com/mtjrider/)
