@@ -71,6 +71,7 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
+    - {{ stdlib('c') }}
     # need the libcuda stub for import test
     - cuda-driver-dev                          # [linux and (cuda_compiler_version or "").startswith("12")]
   files:
