@@ -235,6 +235,3 @@ Feedstock Maintainers
 * [@v0i0](https://github.com/v0i0/)
 * [@yangcal](https://github.com/yangcal/)
 
-
-<!-- dummy commit to enable rerendering -->
-
