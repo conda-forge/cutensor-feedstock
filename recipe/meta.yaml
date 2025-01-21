@@ -25,7 +25,7 @@ source:
   sha256: 3c40b47d164fb0cdbd4a420d0cfac130ca70535743ad7dfb746cd80da5f9600a  # [win64]
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win32 or osx or cuda_compiler_version in (None, "None")]
   script:  # [win64]
     - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
