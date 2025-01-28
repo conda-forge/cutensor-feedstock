@@ -1,4 +1,4 @@
-{% set version = "2.0.2.5" %}
+{% set version = "2.1.0.9" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -22,12 +22,12 @@ source:
   sha256: 0e957ae7b352f599de34b6fa1ba999b0617887f885d7436ac5737d71a6b83baa  # [linux64]
   sha256: e351dc1e69bd0c5ac45b6ef311ee2b510c8ff6f0b350b0354d6db5563e8fabae  # [ppc64le]
   sha256: 5163dd40f11f328e469a6d9b0056c8346f5d59ed538c18d6b954e4ae657c69cc  # [aarch64]
-  sha256: 3c40b47d164fb0cdbd4a420d0cfac130ca70535743ad7dfb746cd80da5f9600a  # [win64]
+  sha256: ed835ba7fd617000f77e1dff87403d123edf540bd99339e3da2eaab9d32a4040  # [win64]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win32 or osx or cuda_compiler_version in (None, "None")]
-  script:  # [win64]
+  script:   # [win64]
     - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
     - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
     - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
