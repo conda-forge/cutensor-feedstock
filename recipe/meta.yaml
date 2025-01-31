@@ -26,14 +26,6 @@ source:
 build:
   number: 0
   skip: true  # [ppc64le or win32 or osx or cuda_compiler_version in (None, "None")]
-  script:   # [win64]
-    - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
-    - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
-    - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
-    - copy include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
-    - del lib\\{{ cuda_major }}\\*static*                                  # [win64]
-    - copy lib\\{{ cuda_major }}\\*.dll %LIBRARY_BIN%\\                    # [win64]
-    - copy lib\\{{ cuda_major }}\\*.lib %LIBRARY_LIB%\\                    # [win64]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
   ignore_run_exports_from:
