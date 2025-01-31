@@ -43,7 +43,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
-    - cf-nvidia-tools                       # [linux]
+    - cf-nvidia-tools 1                     # [linux]
   host:
     - cuda-version {{ cuda_compiler_version }}
     - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
