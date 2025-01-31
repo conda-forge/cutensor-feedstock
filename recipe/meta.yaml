@@ -42,7 +42,8 @@ requirements:
     - {{ compiler('cuda') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
   host:
-    - patchelf >=0.12  # [linux]
+    # https://github.com/NixOS/patchelf/issues/492
+    - patchelf >=0.12,<0.18.0               # [linux]
     - cuda-version {{ cuda_compiler_version }}
     - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
     - libcublas  # [(cuda_compiler_version or "").startswith("12")]
