@@ -33,6 +33,8 @@ build:
   missing_dso_whitelist:
     - "*/libcuda.so.*"    # [linux]
     - "*/nvcuda.dll"      # [win]
+  script_env:
+    - cuda_major={{ cuda_major }}
 
 requirements:
   build:

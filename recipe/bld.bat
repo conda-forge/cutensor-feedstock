@@ -30,6 +30,6 @@ copy include\cutensor.h %LIBRARY_INC%\
 copy include\cutensorMg.h %LIBRARY_INC%\
 mkdir %LIBRARY_INC%\cutensor
 copy include\cutensor\types.h %LIBRARY_INC%\cutensor\
-del lib\{{ cuda_major }}\*static*
-copy lib\{{ cuda_major }}\*.dll %LIBRARY_BIN%\
-copy lib\{{ cuda_major }}\*.lib %LIBRARY_LIB%\
+del lib\%cuda_major%\*static*
+copy lib\%cuda_major%\*.dll %LIBRARY_BIN%\
+copy lib\%cuda_major%\*.lib %LIBRARY_LIB%\
