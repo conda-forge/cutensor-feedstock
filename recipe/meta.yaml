@@ -1,4 +1,4 @@
-{% set version = "2.0.2.5" %}
+{% set version = "2.1.0.9" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -19,22 +19,13 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/{{ platform }}/libcutensor-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: 0e957ae7b352f599de34b6fa1ba999b0617887f885d7436ac5737d71a6b83baa  # [linux64]
-  sha256: e351dc1e69bd0c5ac45b6ef311ee2b510c8ff6f0b350b0354d6db5563e8fabae  # [ppc64le]
-  sha256: 5163dd40f11f328e469a6d9b0056c8346f5d59ed538c18d6b954e4ae657c69cc  # [aarch64]
-  sha256: 3c40b47d164fb0cdbd4a420d0cfac130ca70535743ad7dfb746cd80da5f9600a  # [win64]
+  sha256: ee59fcb4e8d59fc0d8cebf5f7f23bf2a196a76e6bcdcaa621aedbdcabd20a759  # [linux64]
+  sha256: cef7819c4ecf3120d4f99b08463b8db1a8591be25147d1688371024885b1d2f0  # [aarch64]
+  sha256: ed835ba7fd617000f77e1dff87403d123edf540bd99339e3da2eaab9d32a4040  # [win64]
 
 build:
-  number: 2
-  skip: true  # [win32 or osx or cuda_compiler_version in (None, "None")]
-  script:  # [win64]
-    - copy include\\cutensor.h %LIBRARY_INC%\\                             # [win64]
-    - copy include\\cutensorMg.h %LIBRARY_INC%\\                           # [win64]
-    - mkdir %LIBRARY_INC%\\cutensor                                        # [win64]
-    - copy include\\cutensor\\types.h %LIBRARY_INC%\\cutensor              # [win64]
-    - del lib\\{{ cuda_major }}\\*static*                                  # [win64]
-    - copy lib\\{{ cuda_major }}\\*.dll %LIBRARY_BIN%\\                    # [win64]
-    - copy lib\\{{ cuda_major }}\\*.lib %LIBRARY_LIB%\\                    # [win64]
+  number: 0
+  skip: true  # [ppc64le or cuda_compiler_version in (undefined, "None")]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
   ignore_run_exports_from:
@@ -42,6 +33,8 @@ build:
   missing_dso_whitelist:
     - "*/libcuda.so.*"    # [linux]
     - "*/nvcuda.dll"      # [win]
+  script_env:
+    - cuda_major={{ cuda_major }}
 
 requirements:
   build:
@@ -50,8 +43,8 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
+    - cf-nvidia-tools 1                     # [linux]
   host:
-    - patchelf >=0.12  # [linux]
     - cuda-version {{ cuda_compiler_version }}
     - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
     - libcublas  # [(cuda_compiler_version or "").startswith("12")]
