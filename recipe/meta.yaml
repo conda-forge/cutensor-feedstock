@@ -44,8 +44,6 @@ requirements:
     - {{ compiler('cuda') }}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
     - cf-nvidia-tools                       # [linux]
-    # https://github.com/NixOS/patchelf/issues/492
-    - patchelf >=0.12,<0.18.0               # [linux]
   host:
     - cuda-version {{ cuda_compiler_version }}
     - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
