@@ -25,7 +25,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [ppc64le or win32 or osx or cuda_compiler_version in (None, "None")]
+  skip: true  # [ppc64le or cuda_compiler_version in (undefined, "None")]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
   ignore_run_exports_from:
