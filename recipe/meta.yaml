@@ -92,6 +92,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - b-kloss
     - conda-forge/cuda
     - v0i0
     - yangcal
