@@ -24,7 +24,7 @@ source:
   sha256: b1f5c7b399f8124ccf70e4df751e43757b7727e1028ec04a27a4a63efff06885  # [win64]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [ppc64le or cuda_compiler_version in (undefined, "None")]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
