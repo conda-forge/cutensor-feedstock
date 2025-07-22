@@ -92,6 +92,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - ChrisPsa
     - b-kloss
     - conda-forge/cuda
     - v0i0
