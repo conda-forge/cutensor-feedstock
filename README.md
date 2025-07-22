@@ -192,6 +192,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@ChrisPsa](https://github.com/ChrisPsa/)
 * [@JeremyWangNVDA](https://github.com/JeremyWangNVDA/)
 * [@b-kloss](https://github.com/b-kloss/)
 * [@conda-forge/cuda](https://github.com/orgs/conda-forge/teams/cuda/)
