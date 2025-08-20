@@ -1,4 +1,4 @@
-{% set version = "2.3.0.0" %}
+{% set version = "2.3.0.6" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
