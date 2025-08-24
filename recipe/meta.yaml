@@ -3,7 +3,7 @@
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
 {% else %}
-{% set cuda_major = environ.get("cuda_compiler_version", "11.2").split(".")[0] | int %}
+{% set cuda_major = environ.get("cuda_compiler_version", "12.0").split(".")[0] | int %}
 {% endif %}
 
 {% set platform = "linux-x86_64" %}  # [linux64]
@@ -46,15 +46,11 @@ requirements:
     - cf-nvidia-tools 1                     # [linux]
   host:
     - cuda-version {{ cuda_compiler_version }}
-    - cudatoolkit  # [(cuda_compiler_version or "").startswith("11")]
-    - libcublas  # [(cuda_compiler_version or "").startswith("12")]
+    - libcublas  # [(cuda_compiler_version or "").startswith("12") or (cuda_compiler_version or "").startswith("13")]
   run:
-    # https://docs.nvidia.com/cuda/cutensor/latest/release_notes.html#cutensor-v2-0-0
-    # Minimum supported CTK is 11.2 as of v2.0
-    - {{ pin_compatible("cuda-version", min_pin="11.2.0", max_pin="x") }}  # [(cuda_compiler_version or "").startswith("11")]
-    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}   # [(cuda_compiler_version or "").startswith("12")]
-    - cudatoolkit             # [(cuda_compiler_version or "").startswith("11")]
-    - libcublas               # [(cuda_compiler_version or "").startswith("12")]
+    - {{ pin_compatible("cuda-version", min_pin="12.0", max_pin="x") }}   # [(cuda_compiler_version or "").startswith("12")]
+    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}  # [(cuda_compiler_version or "").startswith("13")]
+    - libcublas               # [(cuda_compiler_version or "").startswith("12") or (cuda_compiler_version or "").startswith("13")]
   run_constrained:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
@@ -66,7 +62,7 @@ test:
     - {{ compiler('cuda') }}
     - {{ stdlib('c') }}
     # need the libcuda stub for import test
-    - cuda-driver-dev                          # [linux and (cuda_compiler_version or "").startswith("12")]
+    - cuda-driver-dev                          # [linux and ((cuda_compiler_version or "").startswith("12") or (cuda_compiler_version or "").startswith("13"))]
   files:
     - test_load_elf.c        # [linux]
 
