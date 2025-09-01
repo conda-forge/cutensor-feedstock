@@ -26,7 +26,7 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/{{ platform }}/libcutensor-{{ platform }}-{{ version }}_cuda{{ cuda_major }}-archive.{{ extension }}
-  sha256: {{ sha }}
+  sha256: {{ sha|default("") }}
 
 build:
   number: 0
@@ -51,10 +51,10 @@ requirements:
     - cf-nvidia-tools 1                     # [linux]
   host:
     - cuda-version {{ cuda_compiler_version }}
-    - libcublas  # [(cuda_compiler_version or "").startswith("12") or (cuda_compiler_version or "").startswith("13")]
+    - libcublas
   run:
-    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}  # [(cuda_compiler_version or "").startswith("12") or (cuda_compiler_version or "").startswith("13")]
-    - libcublas  # [(cuda_compiler_version or "").startswith("12") or (cuda_compiler_version or "").startswith("13")]
+    - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
+    - libcublas
   run_constrained:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
@@ -66,7 +66,7 @@ test:
     - {{ compiler('cuda') }}
     - {{ stdlib('c') }}
     # need the libcuda stub for import test
-    - cuda-driver-dev  # [linux and ((cuda_compiler_version or "").startswith("12") or (cuda_compiler_version or "").startswith("13"))]
+    - cuda-driver-dev  # [linux]
   files:
     - test_load_elf.c  # [linux]
 
