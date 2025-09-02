@@ -19,9 +19,7 @@ mkdir %LIBRARY_INC%\cutensor
 if errorlevel 1 exit 1
 copy include\cutensor\types.h %LIBRARY_INC%\cutensor\
 if errorlevel 1 exit 1
-del lib\%cuda_major%\*static*
+copy bin\*.dll %LIBRARY_BIN%\
 if errorlevel 1 exit 1
-copy lib\%cuda_major%\*.dll %LIBRARY_BIN%\
-if errorlevel 1 exit 1
-copy lib\%cuda_major%\*.lib %LIBRARY_LIB%\
+copy lib\*.lib %LIBRARY_LIB%\
 if errorlevel 1 exit 1
