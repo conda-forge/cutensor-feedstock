@@ -8,10 +8,9 @@ test -f $PREFIX/lib/libcutensor.so
 test -f $PREFIX/lib/libcutensorMg.so
 
 ${GCC} test_load_elf.c -std=c99 -Werror -ldl -o test_load_elf
-# need to load the stub for CUDA 12
-if [[ "${cuda_compiler_version}" =~ 12.* ]]; then
-    export CUDA_STUB="$PREFIX/lib/stubs/libcuda.so"
-fi
+# need to load the stub for CUDA 12 and 13
+export CUDA_STUB="$PREFIX/lib/stubs/libcuda.so"
+
 LD_PRELOAD="$CUDA_STUB" ./test_load_elf $PREFIX/lib/libcutensor.so
 LD_PRELOAD="$CUDA_STUB" ./test_load_elf $PREFIX/lib/libcutensorMg.so
 

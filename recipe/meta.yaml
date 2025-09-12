@@ -29,7 +29,7 @@ source:
   sha256: {{ sha|default("") }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [ppc64le or cuda_compiler_version in (undefined, "None")]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
