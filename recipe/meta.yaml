@@ -1,4 +1,4 @@
-{% set version = "2.3.1.0" %}
+{% set version = "2.4.0.2" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -13,12 +13,12 @@
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
 
-{% set sha = "b1d7ad37b24cd66a446ae76ac33bd5125aa58007a604cb64fc9c014a8d685940" %}  # [linux64 and (cuda_compiler_version or "").startswith("12")]
-{% set sha = "f3763cdc7b03ca08e348efb6faa35d461537390ce7d059e279e415b33dad8291" %}  # [aarch64 and (cuda_compiler_version or "").startswith("12")]
-{% set sha = "8df4c1b856c40e72f41d5b92efee5729bf11f00a0e1e3afd546b0d35a360a6cb" %}  # [win64 and (cuda_compiler_version or "").startswith("12")]
-{% set sha = "9cb1125f7de01ca319b5c72edeb7169b679b72beacc90354fb18a14056e24372" %}  # [linux64 and (cuda_compiler_version or "").startswith("13")]
-{% set sha = "2e4c24bd1621dac7497ca9edf90bfc5dbdcc38490dafd35821066f96f2934aef" %}  # [aarch64 and (cuda_compiler_version or "").startswith("13")]
-{% set sha = "8f933694164e310183fffa9cf27d4db43b6edb0fff53b5aa0ab23e705807ac12" %}  # [win64 and (cuda_compiler_version or "").startswith("13")]
+{% set sha = "2703d730343bc5827b2b36698bd2e7d8e348f4459093a8910b47534e65f7b264" %}  # [linux64 and (cuda_compiler_version or "").startswith("12")]
+{% set sha = "0d34fe8655ce183540f15c70b03a4af305141617965ca394058b593372b00ba4" %}  # [aarch64 and (cuda_compiler_version or "").startswith("12")]
+{% set sha = "2fc6de873c50feb691d701f61220a9ed745a938e56bbd4079ecc56b6a43e746f" %}  # [win64 and (cuda_compiler_version or "").startswith("12")]
+{% set sha = "c012b37553bf5c338b7edaeff36a4d2af21d21985af98a5390e4f2c37ad55653" %}  # [linux64 and (cuda_compiler_version or "").startswith("13")]
+{% set sha = "c04c560b87f8b24db7ab32335591a2dacff489f561a56372cb9855ec3da31c19" %}  # [aarch64 and (cuda_compiler_version or "").startswith("13")]
+{% set sha = "0fe5dd20c7d0a95a145cc96ecf83567f30aff00902843ec87f88c470510b0b82" %}  # [win64 and (cuda_compiler_version or "").startswith("13")]
 
 package:
   name: cutensor
@@ -29,7 +29,7 @@ source:
   sha256: {{ sha|default("") }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [ppc64le or cuda_compiler_version in (undefined, "None")]
   run_exports:
     - {{ pin_subpackage('cutensor') }}
