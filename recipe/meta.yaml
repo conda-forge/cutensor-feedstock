@@ -1,4 +1,4 @@
-{% set version = "2.5.0.2" %}
+{% set version = "2.6.0.4" %}
 
 {% if cuda_compiler_version in (None, "None", True, False) %}
 {% set cuda_major = 0 %}
@@ -12,12 +12,12 @@
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
 
-{% set sha = "8ebea375994006afa0ebf7b8298e9cce3276f03e661d5ff4401d3232b7e8ca91" %}  # [linux64 and (cuda_compiler_version or "").startswith("12")]
-{% set sha = "08848be5db4760d829c0fa50cc0e56a20555819997160bb619cd8b3086d3bfa8" %}  # [aarch64 and (cuda_compiler_version or "").startswith("12")]
-{% set sha = "2bf2025c8227f7e5c3b9ec78f191159de0c2f308fb9ba926ca8160e16345e75f" %}  # [win64 and (cuda_compiler_version or "").startswith("12")]
-{% set sha = "4bd0e424235e628b8924514706bdac9cf10cf5aa85d9487ce69e58d825f19806" %}  # [linux64 and (cuda_compiler_version or "").startswith("13")]
-{% set sha = "82837aa8c18773dce9e034d8f4b230ba3709bc049dd0536db91538b71bd735f4" %}  # [aarch64 and (cuda_compiler_version or "").startswith("13")]
-{% set sha = "2c615334fc05d7f27bb1528fbd53660edaee31bc503f7af8d2d757e49a1fe090" %}  # [win64 and (cuda_compiler_version or "").startswith("13")]
+{% set sha = "28dbda315a95b3edc58af986ff1b886dcf2bd1c9651094539011bbce234cb9ae" %}  # [linux64 and (cuda_compiler_version or "").startswith("12")]
+{% set sha = "f057367cabfc459b5e66e295b724b00ed780defda3ccfb62a98c8817df46b8b5" %}  # [aarch64 and (cuda_compiler_version or "").startswith("12")]
+{% set sha = "05e29d4dd2472b2261893979f2e35b7ef27563ba47976ecdc121d88660d86186" %}  # [win64 and (cuda_compiler_version or "").startswith("12")]
+{% set sha = "f70003a4817da3db2f1f7726328c31332ada89a496446fe30b90f414eccda487" %}  # [linux64 and (cuda_compiler_version or "").startswith("13")]
+{% set sha = "f9e85439174f64d6e84db9ea54b101a24ca751b7e94ceccbfd5181be22980310" %}  # [aarch64 and (cuda_compiler_version or "").startswith("13")]
+{% set sha = "005257fb07789669605eaa4e6e5cf46a55dbade3194db03931cdbb900711e626" %}  # [win64 and (cuda_compiler_version or "").startswith("13")]
 
 package:
   name: cutensor
