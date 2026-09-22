@@ -11,7 +11,7 @@ if not exist %LIBRARY_LIB%\\cutensorMg.lib exit 1
 
 git clone "https://github.com/NVIDIA/CUDALibrarySamples.git" sample_linux
 cd sample_linux\cuTENSOR
-call nvcc -I%LIBRARY_INC% -L%LIBRARY_LIB% -lcutensor contraction.cu -o contraction
-call nvcc -I%LIBRARY_INC% -L%LIBRARY_LIB% -lcutensor reduction.cu -o reduction
+call nvcc --std=c++17 -I%LIBRARY_INC% -L%LIBRARY_LIB% -lcutensor contraction.cu -o contraction
+call nvcc --std=c++17 -I%LIBRARY_INC% -L%LIBRARY_LIB% -lcutensor reduction.cu -o reduction
 cd ..\cuTENSORMg
-call nvcc -I%LIBRARY_INC% -L%LIBRARY_LIB% -lcutensorMg -lcutensor contraction_multi_gpu.cu -o contraction_multi_gpu
+call nvcc --std=c++17 -I%LIBRARY_INC% -L%LIBRARY_LIB% -lcutensorMg -lcutensor contraction_multi_gpu.cu -o contraction_multi_gpu

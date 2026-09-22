@@ -9,7 +9,7 @@ channel_targets:
 cuda_compiler:
 - cuda-nvcc
 cuda_compiler_version:
-- '13.0'
+- '13.4'
 cutensor:
 - '2'
 cxx_compiler:

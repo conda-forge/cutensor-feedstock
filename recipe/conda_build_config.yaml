@@ -6,3 +6,4 @@
 c_stdlib_version:              # [linux]
   - 2.28                       # [linux]
   - 2.28                       # [linux and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
+  - 2.28                       # [linux and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
