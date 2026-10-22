@@ -1,5 +1,6 @@
 build_platform:
   linux_aarch64: linux_64
+  win_arm64: win_arm64
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
@@ -8,15 +9,17 @@ github:
   tooling_branch_name: main
 provider:
   linux_aarch64: default
+  win_arm64: default
+test: native_and_emulated
 workflow_settings:
   build_workspace_dir:
-    - provider: azure
-      platform: win_64
-      value: C:\bld\
+  - platform: win_64
+    provider: azure
+    value: C:\bld\
   free_disk_space:
-    - provider: azure
-      value: quick
+  - provider: azure
+    value: quick
   tools_install_dir:
-    - provider: azure
-      platform: win_64
-      value: C:\Miniforge
+  - platform: win_64
+    provider: azure
+    value: C:\Miniforge
